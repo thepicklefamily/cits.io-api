@@ -2,7 +2,7 @@ import { compare, hash, genSalt } from 'bcrypt';
 
 export const hashPassword = async (password) => {
   const salt = await genSalt(json.PARSE(process.env.SALT_ROUNDS);
-  const hashed = await hash(passwrod, salt);
+  const hashed = await hash(password, salt);
   return hashed;
 }
 
