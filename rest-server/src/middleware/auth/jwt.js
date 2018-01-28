@@ -9,13 +9,16 @@ export const generateToken = async (email, id, adminStatus) => {
     id,
     adminStatus,
   }
-  token.accessToken = sign(payload, process.env.TOKEN_SECERET_KEY)
+  token.accessToken = sign(payload, process.env.TOKEN_SECRET_KEY)
 
   return token;
 }
 
-export const verifyToken = async (?) => {
-  
-}
+// export const verifyToken = async (?) => {
+//   try { 
+//     verify(token, process.env.TOKEN_SECRET_KEY)
+//   } catch (err) {
 
-base64
+//   }
+// }
+
