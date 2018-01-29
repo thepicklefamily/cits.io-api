@@ -7,13 +7,18 @@
     "rest-server": "entry.js"
   },
   "scripts": {
+    "start": "nodemon bin/entry.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
     "bcrypt": "^1.0.3",
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "chalk": "^2.3.0",
     "cors": "^2.8.4",
@@ -22,6 +27,7 @@
     "helmet": "^3.10.0",
     "joi": "^13.1.1",
     "jsonwebtoken": "^8.1.1",
-    "passport": "^0.4.0"
+    "passport": "^0.4.0",
+    "pg": "^7.4.1"
   }
 }
