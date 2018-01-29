@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors'; // enables CORS with various options.
 import parser from 'body-parser';  // you know what this is
-import helmet from 'helmt';  // helmet is a collection of 12 smaller middleware functions that secures express Apps by setting various http headers.
+import helmet from 'helmet';  // helmet is a collection of 12 smaller middleware functions that secures express Apps by setting various http headers.
 
 //need to import routes here
 
