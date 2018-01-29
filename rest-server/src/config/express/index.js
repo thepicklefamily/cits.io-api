@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors'; // enables CORS with various options.
 import parser from 'body-parser';  // you know what this is
-import helmet from 'helmt';  // helmet is a collection of 12 smaller middleware functions that secures express Apps by setting various http headers.
+import helmet from 'helmet';  // helmet is a collection of 12 smaller middleware functions that secures express Apps by setting various http headers.
 
-//need to import routes here
+import router from '../../routes/index';
 
 const middleWare = [
   helmet(),           //It's best to use Helmet early in your middleware stack so that its headers are sure to be set.
@@ -26,9 +26,9 @@ class App {
     this.express.use(...middleWare);
   }
 
-  // mountRoutes() {
-  //   this.express.use('/api', router);
-  // }
+  mountRoutes() {
+    this.express.use('/api', router);
+  }
 }
 
 export default new App();
