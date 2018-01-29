@@ -1,7 +1,4 @@
 import {
-
-  // create
-  //drop
   createUserTable,
   dropUserTable,
   createDatabase,
