@@ -4,10 +4,10 @@ import { success, error } from "../../lib/log";
 
 export const signUpQuery = async body => {
   try {
-    const queryString = signUPHelper(body);
-  const data = await db.queryAsync(queryString);
-  success('signUpQuery - successfully inserted data ', data);
-  return data
+    const queryString = signUpHelper(body);
+    const data = await db.queryAsync(queryString);
+    success('signUpQuery - successfully inserted data ', JSON.stringify(data));
+    return data;
   } catch (err) {
     error('signUpQuery - error= ', err);
     throw new Error(err);
