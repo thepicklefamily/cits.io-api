@@ -18,7 +18,7 @@ psql cits
 ### Install npm
 
 npm install
-npm run buildEnv
+npm run buildEnv (if you do this, it will overwrite your .env with .env.sample.js in config folder)
 npm run setup:rest-server
 npm run db:setup:rest-server
 
