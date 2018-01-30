@@ -1,7 +1,10 @@
-export const signUpHelper = () => {
-  
+export const signUpHelper = ({ email, username, password, type }) => {
+  return `
+    INSERT into Users (email, username, password, type)
+    VALUES ('${email}','${username}','${password}','${type}')
+    RETURNING id, email, username, type
+  `;
 }
-
 export const loginHelper = ({ username }) => {
   return `
     SELECT id, email, username, password, type

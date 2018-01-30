@@ -1,7 +1,7 @@
 import { sign, verify } from 'jsonwebtoken';
 
 
-export const generateToken = async (email, id, adminStatus) => { // change email to username? ask avi
+export const generateToken = async (username, id) => { // change email to username? ask avi
   const token = {};
   const payload = {
     expiresIn: '6h',
