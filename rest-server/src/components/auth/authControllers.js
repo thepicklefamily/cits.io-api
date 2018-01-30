@@ -27,9 +27,9 @@ export const loginController = async (req, res) => {
   try {
     const { rows } = await loginQuery(req.body);
     delete rows[0].password;
-    const { id, email } = rows[0]; // email or username? ask avi, check jwt
-    success('loginController - successfully retrieved data ', JSON.stringifyt(rows[0]));
-    const token = await generateToken(id, email); // email or username? ask avi, check jwt
+    const { id, username } = rows[0]; // email or username? ask avi, check jwt
+    success('loginController - successfully retrieved data ', JSON.stringify(rows[0]));
+    const token = await generateToken(id, username); // email or username? ask avi, check jwt
     rows[0].token = token;
     return res.status(200).append('authorization', JSON.stringify(token)).send(rows[0]);
   } catch (err) {
