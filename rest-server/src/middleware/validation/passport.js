@@ -13,12 +13,14 @@ const LocalStrategy = local.Strategy;
 // const JwtStrategy = jwt.Strategy;
 // const ExtractJwt = jwt.ExtractJwt;
 
+const localOptions = {};
+
 // const jwtOptions = {
 //   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
 //   secretOrKey: process.env.TOKEN_SECRET
 // };
 
-passport.use(new LocalStrategy(null, async (username, password, done) => {
+passport.use(new LocalStrategy(localOptions, async (username, password, done) => {
   try {
     const { rows } = await loginQuery({ username });
     if (!rows.length) {

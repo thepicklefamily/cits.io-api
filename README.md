@@ -11,6 +11,8 @@ brew install postgresql
 brew services start postgresql
 createuser root
 createdb cits
+
+### from cits
 psql cits
 
 ### Install npm
@@ -19,4 +21,6 @@ npm install
 npm run buildEnv
 npm run setup:rest-server
 npm run db:setup:rest-server
+
+### from cits.io-api
 npm start

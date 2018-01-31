@@ -5,9 +5,8 @@ export const generateToken = async (username, id) => { // change email to userna
   const token = {};
   const payload = {
     expiresIn: '6h',
-    email,
-    id,
-    adminStatus,
+    username, // username? ask jae
+    id
   }
   token.accessToken = sign(payload, process.env.TOKEN_SECRET_KEY)
 
