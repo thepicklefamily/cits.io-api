@@ -19,7 +19,7 @@ export const signUpController = async (req, res) => {
       .send(rows[0]);
   } catch (err) {
     error('signUpController - error= ', err);
-    throw new Error(err);
+    throw new Error(JSON.parse(err));
   }
 };
 
@@ -27,11 +27,14 @@ export const loginController = async (req, res) => {
   try {
     const { rows } = await loginQuery(req.body);
     delete rows[0].password;
-    const { id, email } = rows[0]; // email or username? ask avi, check jwt
-    success('loginController - successfully retrieved data ', JSON.stringifyt(rows[0]));
-    const token = await generateToken(id, email); // email or username? ask avi, check jwt
+    const { id, username } = rows[0];
+    success('loginController - successfully retrieved data ', JSON.stringify(rows[0]));
+    const token = await generateToken(id, username);
     rows[0].token = token;
-    return res.status(200).append('authorization', JSON.stringify(token)).send(rows[0]);
+    return res
+      .status(200)
+      .append('authorization', JSON.stringify(token))
+      .send(rows[0]);
   } catch (err) {
     error('loginController - error= ', err);
     throw new Error(err);
