@@ -14,3 +14,5 @@ server.listen(PORT, (err) => {
   if (err) throw new Error;
   success('successfully connected to port ', PORT);
 });
+
+module.exports.app = app;
