@@ -1,6 +1,6 @@
 export const signUpHelper = ({ email, username, password, type }) => {
   return `
-    INSERT into Users (email, username, password, type)
+    INSERT into users (email, username, password, type)
     VALUES ('${email}','${username}','${password}','${type}')
     RETURNING id, email, username, type
   `;
