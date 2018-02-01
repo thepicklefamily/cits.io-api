@@ -6,7 +6,6 @@ import { hashPassword, comparePasswords } from '../../middleware/auth/bcrypt';
 
 export const signUpController = async (req, res) => {
   try {
-    console.log(req.body)
     req.body.password = await hashPassword(req.body.password);
     const { rows } = await signUpQuery(req.body);
     const { id, username } = rows[0];
