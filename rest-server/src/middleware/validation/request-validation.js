@@ -9,10 +9,19 @@ export default {
       type: Joi.number().integer().min(0).max(1).required()
     }
   },
+
   login: {
     body: {
       username: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required(),
       password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required()
+    }
+  },
+  
+  addProperty: {
+    body: {
+      secret_key: Joi.string().required(),
+      name: Joi.string().required(),
+      address: Joi.string().required()
     }
   }
 }
