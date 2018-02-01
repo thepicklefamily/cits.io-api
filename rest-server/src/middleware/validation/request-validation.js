@@ -23,5 +23,11 @@ export default {
       name: Joi.string().required(),
       address: Joi.string().required()
     }
+  },
+
+  getProperty: {
+    query: {
+      name: Joi.string().required()
+    }
   }
 }
