@@ -1,13 +1,13 @@
-export const signUpHelper = ({ email, username, password, type }) => {
+export const signUpHelper = ({ full_name, phone, email, username, password, type }) => {
   return `
-    INSERT into users (email, username, password, type)
-    VALUES ('${email}','${username}','${password}','${type}')
-    RETURNING id, email, username, type
+    INSERT into users (full_name, phone, email, username, password, type)
+    VALUES ('${full_name}','${phone}','${email}','${username}','${password}','${type}')
+    RETURNING id, full_name, phone, email, username, type
   `;
 }
 export const loginHelper = ({ username }) => {
   return `
-    SELECT id, email, username, password, type
+    SELECT *
     FROM users
     WHERE username='${username}'
   `;
