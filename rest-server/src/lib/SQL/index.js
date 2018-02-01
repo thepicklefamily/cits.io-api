@@ -74,3 +74,35 @@ export const dropUserTable = async () => {
     error('error dropping users table ', err);
   }
 };
+
+export const createPropertyTable = async () => {
+  try {
+    await db.queryAsync(
+      `
+      CREATE TABLE IF NOT EXISTS properties
+      (
+      id SERIAL,
+      secret_key VARCHAR(255) NOT NULL,
+      name VARCHAR(255) UNIQUE NOT NULL,
+      address VARCHAR(255) NOT NULL,
+      CONSTRAINT properties_pk
+        PRIMARY KEY(id)
+      )
+      `
+    );
+    success('successfully created properties table');
+  } catch (err) {
+    error('error creating properties table ', err)
+  }
+};
+
+export const dropPropertyTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS properties`
+    );
+    success('successfully dropped properties table');
+  } catch (err) {
+    error('error dropping properties table ', err);
+  }
+};
