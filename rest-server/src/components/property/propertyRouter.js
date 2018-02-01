@@ -7,7 +7,7 @@ import { addPropertyController } from './propertyControllers';
 const router = express.Router();
 
 router
-  .route('/add-property')
+  .route('/create')
   .post(
     validate(formValidation.addProperty),
     addPropertyController
