@@ -13,10 +13,10 @@ import {
 
 const setup = async () => {
   await dropDatabase();
+  await dropArticleTable();
   await dropPhonebookTable(); // be wary of the order which the tables are dropping
   await dropPropertyTable();
   await dropUserTable();
-  await dropArticleTable();
   await createDatabase();
   await createUserTable();
   await createPropertyTable();

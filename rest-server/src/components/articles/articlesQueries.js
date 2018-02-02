@@ -12,13 +12,16 @@ export const addArticleQuery = async body => {
     error('addArticleQuery - error=', err);
     throw new Error(err);
   }
-
 }
 
 export const editArticleQuery = async body => {
   try {
+    console.log('asdf')
     const queryString = await editArticleHelper(body);
+    console.log(queryString)
     const data = await db.queryAsync(queryString);
+
+    console.log('asdfasdf', data)
     success('editArticleQuery - successfully updated Data', JSON.stringify(data));
     return data;
   } catch (err) {
@@ -27,9 +30,9 @@ export const editArticleQuery = async body => {
   }
 }
 
-export const deleteArticleQuery = async body => {
+export const deleteArticleQuery = async params => {
   try {
-    const queryString = await deleteArticleHelper(body);
+    const queryString = await deleteArticleHelper(params);
     const data = await db.queryAsync(queryString);
     success('deleteArticleQuery - successfully deleted Data', JSON.stringify(data));
     return data;

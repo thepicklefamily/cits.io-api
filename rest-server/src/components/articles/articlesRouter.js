@@ -16,17 +16,19 @@ router
   .post(validate(formValidation.addArticle), addArticleController);
 
 router
-  .route('/editArticle') // ask pat about params and :/article_id
+  .route('/editArticle') 
   .put(validate(formValidation.editArticle), editArticleController);
 
 router
-  .route('/deleteArticle')
-  .delete(validate(formValidation.deleteArticle), deleteArticleController);
+  .route('/deleteArticle/:article_id/:property_id')
+  .delete(deleteArticleController);
 
 // router
 //   .routes('/fetchAllArticles')  ask pat about params
 //   .get(validate(formValidation.fetchAllArticles), fetchAllArticlesController);
 
+// NOTE TO SELF
+  // must check if user is a manager before ALLOWING CREATING, EDITING, DELETING ARTICLES 
 
 
 export default router;
