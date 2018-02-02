@@ -9,7 +9,8 @@ import '../../middleware/validation/passport';
 const router = express.Router();
 
 router.route('/create')
-  .post(validate(formValidation.addPhonebook), addPropertyPhonebookController);
+  .post(validate(formValidation.addPhonebook), 
+  addPropertyPhonebookController);
 router.route('/:propertyId')
   .get(fetchPropertyPhonebookController);
 
