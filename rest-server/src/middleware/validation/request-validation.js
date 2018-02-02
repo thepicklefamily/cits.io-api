@@ -55,7 +55,10 @@ export default {
     body: {
       title: Joi.string().required(),
       content: Joi.string().required(),
-      date: Joi.string().required()
+      date: Joi.string().required(),
+      photo_url: Joi.string().required(),
+      user_id: Joi.string().required(),
+      property_id: Joi.string().required()
     }
   },
 
@@ -65,20 +68,8 @@ export default {
       title: Joi.string().required(),
       content: Joi.string().required(),
       date: Joi.string().required(),
+      photo_url: Joi.string().required()
     }
   },
-
-  deleteArticle: {
-    body: {
-      article_id: Joi.number().integer().required(),
-      property_id: Joi.number().integer().required()
-    }
-  },
-
-  fetchAllArticles: {
-    body: {
-      property_id: Joi.number().integer().required()
-    }
-  }
 
 }

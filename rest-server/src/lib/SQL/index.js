@@ -153,6 +153,7 @@ export const createArticleTable = async () => {
         title VARCHAR(255) NOT NULL,
         content VARCHAR(255) NOT NULL,
         date VARCHAR(255) NOT NULL,
+        photo_url VARCHAR(255) NOT NULL,
         userId INT NOT NULL,
         propertyId INT NOT NULL,
         CONSTRAINT articles_pk
