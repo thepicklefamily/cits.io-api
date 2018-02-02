@@ -5,13 +5,16 @@ import {
   deleteArticleQuery,
   fetchAllArticlesQuery
 } from "./articlesQueries";
-import { sucesss, error } from '../../lib/log';
+import { success, error } from '../../lib/log';
 
 export const addArticleController = async (req, res) => {
   try {
-
+    console.log('controller body', req.body);
+    const data = await addArticleQuery(req.body);
+    success('addArticleController - successfully added article', data);
+    return res.status(200).send(data);
   } catch (err) {
-
+    error('addArticleController - error= ', err);
   }
 }
 

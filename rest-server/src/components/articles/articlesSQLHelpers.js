@@ -1,4 +1,4 @@
-export const addArticleHelper = ({ title, content, date, userId,}) => {
+export const addArticleHelper = ({ title, content, date, userId, propertyId}) => {
   return `
     INSERT INTO articles (title, content, date, userId, propertyId) 
     VALUES ('${title}','${content}','${date}','${userId}','${propertyId}')
@@ -8,9 +8,9 @@ export const addArticleHelper = ({ title, content, date, userId,}) => {
 
 export const editArticleHelper = ({ title, content, date, article_id }) => {
   return `
-  UPDATE articles SET title = '${title}', content = '${content}', date = '${date}' 
-  WHERE id = ${article_id}
-  RETURNING id, title, content, date
+    UPDATE articles SET title = '${title}', content = '${content}', date = '${date}' 
+    WHERE id = ${article_id}
+    RETURNING id, title, content, date
 `
 }
 
