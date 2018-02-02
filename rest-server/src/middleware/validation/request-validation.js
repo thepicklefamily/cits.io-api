@@ -40,5 +40,14 @@ export default {
       contactInfo: Joi.string().required(),
       propertyId: Joi.string().required()
     }
+  },
+
+  addArticle: {
+    body: {
+      title: Joi.string().required(),
+      content: Joi.string().required(),
+      date: Joi.string().required()
+    }
   }
+  
 }

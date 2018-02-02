@@ -6,7 +6,8 @@ export const addArticleQuery = async body => {
   try {
     const queryString = await addArticleHelper(body);
     const data = await db.queryAsync(queryString);
-    sucesss('addArticleQuery - successfully inserted Data', JSON.stringify(data));
+    console.log('data from query', data)
+    success('addArticleQuery - successfully inserted Data', JSON.stringify(data));
     return data;
   } catch (err) {
     error('addArticleQuery - error=', err);
@@ -15,11 +16,11 @@ export const addArticleQuery = async body => {
 
 }
 
-export const editArticleQuery = async body => {
+export const editArticleQuery = async param => {
   try {
-    const queryString = await addArticleHelper(body);
+    const queryString = await addArticleHelper(param);
     const data = await db.queryAsync(queryString);
-    sucesss('editArticleQuery - successfully updated Data', JSON.stringify(data));
+    success('editArticleQuery - successfully updated Data', JSON.stringify(data));
     return data;
   } catch (err) {
     error('editArticleQuery - error=', err);
@@ -31,7 +32,7 @@ export const deleteArticleQuery = async body => {
   try {
     const queryString = await addArticleHelper(body);
     const data = await db.queryAsync(queryString);
-    sucesss('deleteArticleQuery - successfully deleted Data', JSON.stringify(data));
+    success('deleteArticleQuery - successfully deleted Data', JSON.stringify(data));
     return data;
   } catch (err) {
     error('deleteArticleQuery - error=', err);
@@ -44,7 +45,7 @@ export const fetchAllArticlesQuery = async body => {
   try {
     const queryString = await addArticleHelper(body);
     const data = await db.queryAsync(queryString);
-    sucesss('fetchAllArticlesQuery - successfully inserted Data', JSON.stringify(data));
+    success('fetchAllArticlesQuery - successfully inserted Data', JSON.stringify(data));
     return data;
   } catch (err) {
     error('fetchAllArticlesQuery - error=', err);
