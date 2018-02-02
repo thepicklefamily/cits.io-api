@@ -14,15 +14,16 @@ export const editArticleHelper = ({ title, content, date, article_id }) => {
   `
 }
 
-export const deleteArticleHelper = ({ article_id }) => {
+export const deleteArticleHelper = ({ article_id, property_id }) => {
   return `
     DELETE FROM articles
-    WHERE id = ${article_id}
+    WHERE id = ${article_id} AND propertyId = ${property_id}
   `
 }
 
-export const fetchAllArticlesHelper = ({ }) => {
+export const fetchAllArticlesHelper = ({ property_id }) => {
   return `
     SELECT * FROM articles
+    WHERE propertyId = ${property_id}
   `
 }

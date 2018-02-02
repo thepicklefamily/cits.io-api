@@ -66,6 +66,19 @@ export default {
       content: Joi.string().required(),
       date: Joi.string().required(),
     }
+  },
+
+  deleteArticle: {
+    body: {
+      article_id: Joi.number().integer().required(),
+      property_id: Joi.number().integer().required()
+    }
+  },
+
+  fetchAllArticles: {
+    body: {
+      property_id: Joi.number().integer().required()
+    }
   }
 
 }
