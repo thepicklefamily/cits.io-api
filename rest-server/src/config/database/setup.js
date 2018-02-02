@@ -6,7 +6,9 @@ import {
   createPropertyTable,
   dropPropertyTable,
   createPhonebookTable,
-  dropPhonebookTable
+  dropPhonebookTable,
+  createArticleTable,
+  dropArticleTable
 } from '../../lib/SQL';
 
 const setup = async () => {
@@ -14,10 +16,12 @@ const setup = async () => {
   await dropPhonebookTable(); // be wary of the order which the tables are dropping
   await dropPropertyTable();
   await dropUserTable();
+  await dropArticleTable();
   await createDatabase();
   await createUserTable();
   await createPropertyTable();
   await createPhonebookTable();
+  await createArticleTable();
   process.exit();
 };
 
