@@ -40,5 +40,27 @@ export default {
       contactInfo: Joi.string().required(),
       propertyId: Joi.string().required()
     }
-  }
+  },
+
+  addArticle: {
+    body: {
+      title: Joi.string().required(),
+      content: Joi.string().required(),
+      date: Joi.string().required(),
+      photo_url: Joi.string().required(),
+      user_id: Joi.string().required(),
+      property_id: Joi.string().required()
+    }
+  },
+
+  editArticle: {
+    body: {
+      article_id: Joi.number().integer().required(),
+      title: Joi.string().required(),
+      content: Joi.string().required(),
+      date: Joi.string().required(),
+      photo_url: Joi.string().required()
+    }
+  },
+
 }
