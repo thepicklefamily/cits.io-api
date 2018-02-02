@@ -11,7 +11,7 @@ export const editArticleHelper = ({ title, content, date, article_id }) => {
     UPDATE articles SET title = '${title}', content = '${content}', date = '${date}' 
     WHERE id = ${article_id}
     RETURNING id, title, content, date
-`
+  `
 }
 
 export const deleteArticleHelper = ({ article_id }) => {

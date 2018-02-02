@@ -15,9 +15,9 @@ router
   .route('/addArticle')
   .post(validate(formValidation.addArticle), addArticleController);
 
-// router
-//   .route('/edit/:article_id')
-//   .put(validate(formValidation.editArticle), editArticleController);
+router
+  .route('/editArticle')
+  .put(validate(formValidation.editArticle), editArticleController);
 
 // router
 //   .route('/delete/:article_id')
