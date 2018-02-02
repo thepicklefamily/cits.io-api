@@ -1,8 +1,8 @@
 const { serverInitialState } = require('./serverEvents');
 
-const clientReady = ({ io, client, room }, payload) => {
+const clientReady = ({ io, socket, room }, payload) => {
   console.log('client ready');
-  serverInitialState({ io, client, room }, payload);
+  serverInitialState({ io, socket, room }, payload);
 }
 
 const clientEmitters = {

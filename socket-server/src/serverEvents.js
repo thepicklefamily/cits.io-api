@@ -1,6 +1,6 @@
-const serverInitialState = ({ client, room }, payload) => {
+const serverInitialState = ({ socket, room }, payload) => {
   console.log('server initial state');
-  client.emit('server.initialState', alert('hello'));
+  socket.emit('server.initialState', 'hey');
 }
 
 module.exports = { serverInitialState };
