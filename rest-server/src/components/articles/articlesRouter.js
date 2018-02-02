@@ -23,9 +23,9 @@ router
   .route('/deleteArticle/:article_id/:property_id')
   .delete(deleteArticleController);
 
-// router
-//   .routes('/fetchAllArticles')  ask pat about params
-//   .get(validate(formValidation.fetchAllArticles), fetchAllArticlesController);
+router
+  .route('/fetchAllArticles/:property_id')  
+  .get(fetchAllArticlesController);
 
 // NOTE TO SELF
   // must check if user is a manager before ALLOWING CREATING, EDITING, DELETING ARTICLES 

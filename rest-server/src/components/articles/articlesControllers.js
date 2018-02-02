@@ -33,7 +33,7 @@ export const editArticleController = async (req, res) => {
 
 export const deleteArticleController = async (req, res) => {
   try {
-    const data = await deleteArticleQuery(req.params);
+    const {data} = await deleteArticleQuery(req.params);
     success('deleteArticleController - successfully deleted article', JSON.stringify(data));
     return res.status(200).send(data);
   } catch (err) {
@@ -43,8 +43,8 @@ export const deleteArticleController = async (req, res) => {
 
 export const fetchAllArticlesController = async (req, res) => {
   try {
-    const data = await fetchAllArticlesQuery(req.params);
-    success('fetchAllArticlesController - successfully deleted article', JSON.stringify(data));
+    const { rows } = await fetchAllArticlesQuery(req.params);
+    success('fetchAllArticlesController - successfully deleted article', JSON.stringify(rows));
     return res.status(200).send(data);
   } catch (err) {
     error('fetchAllArticlesController - error= ', err);
