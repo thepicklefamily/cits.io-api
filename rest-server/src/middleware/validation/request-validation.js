@@ -40,5 +40,14 @@ export default {
       contactInfo: Joi.string().required(),
       propertyId: Joi.string().required()
     }
+  },
+
+  updatePhonebook: {
+    body: {
+      id: Joi.string().required(),
+      company: Joi.string().required(),
+      service: Joi.string().required(),
+      contactInfo: Joi.string().required()
+    }
   }
 }

@@ -2,7 +2,9 @@ import db from '../../config/database';
 
 import {
   addPropertyPhonebookHelper,
-  fetchPropertyPhonebookHelper
+  fetchPropertyPhonebookHelper,
+  updatePropertyPhonebookHelper,
+  deletePropertyPhonebookHelper
 } from './phonebookSQLHelpers';
 import {
   success,
@@ -29,4 +31,26 @@ export const fetchPropertyPhonebookQuery = async (params) => {
   } catch (err) {
     error('fetchPropertyPhonebookQuery - error= ', err);
   }
-}
+};
+
+export const updatePropertyPhonebookQuery = async (body) => {
+  try {
+    const queryString = updatePropertyPhonebookHelper(body);
+    const data = await db.queryAsync(queryString);
+    success('updatePropertyPhonebookQuery - successfully updated property phonebook ', data);
+    return data;
+  } catch (err) {
+    error('updatePropertyPhonebookQuery - error= ', err);
+  }
+};
+
+export const deletePropertyPhonebookQuery = async (params) => {
+  try {
+    const queryString = deletePropertyPhonebookHelper(params);
+    const data = await db.queryAsync(queryString);
+    success('deletePropertyPhonebookQuery - successfully deleted property phonebook entry ', data);
+    return data;
+  } catch (err) {
+    error('deletePropertyPhonebookQuery - error= ', err);
+  }
+};
