@@ -52,7 +52,8 @@ export const createUserTable = async () => {
       email VARCHAR(255) UNIQUE NOT NULL,
       username VARCHAR(255) NOT NULL,
       password VARCHAR(255) NOT NULL,
-      type INT,
+      type INT NOT NULL,
+      phonenumber VARCHAR(255) NOT NULL,
       CONSTRAINT users_pk
         PRIMARY KEY(id)
       )
@@ -60,7 +61,7 @@ export const createUserTable = async () => {
     );
     success('successfully created users table');
   } catch (err) {
-    error('error creating users table ', err)
+    error('error creating users table ', err);
   }
 };
 
@@ -104,5 +105,40 @@ export const dropPropertyTable = async () => {
     success('successfully dropped properties table');
   } catch (err) {
     error('error dropping properties table ', err);
+  }
+};
+
+export const createPhonebookTable = async () => {
+  try {
+    await db.queryAsync(
+      `
+      CREATE TABLE IF NOT EXISTS phonebooks
+      (
+      id SERIAL,
+      company VARCHAR(255) NOT NULL,
+      service VARCHAR(255) NOT NULL,
+      contactInfo VARCHAR(255) NOT NULL,
+      propertyId INT NOT NULL,
+      CONSTRAINT phonebooks_pk
+        PRIMARY KEY(id),
+      CONSTRAINT fk_phonebooks_propertyId
+        FOREIGN KEY(propertyId) REFERENCES properties(id)
+      )
+      `
+    );
+    success('successfully created phonebooks table');
+  } catch (err) {
+    error('error creating phonebooks table ', err);
+  }
+};
+
+export const dropPhonebookTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS phonebooks`
+    );
+    success('successfully dropped phonebooks table');
+  } catch (err) {
+    error('error dropping phonebooks table ', err);
   }
 };
