@@ -13,7 +13,7 @@ import server from '../src/index.js';  //SEE IF THIS WORKS FIRST. IF DOES, PROBA
 
 //write what expect for rest of response too
 
-
+//FINISH DELETING CONSOLE.LOGS
 
 describe('Test Auth', () => {
 
