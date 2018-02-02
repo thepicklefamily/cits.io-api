@@ -48,6 +48,15 @@ export default {
       content: Joi.string().required(),
       date: Joi.string().required()
     }
+  },
+
+  editArticle: {
+    body: {
+      article_id: Joi.number().integer().required(),
+      title: Joi.string().required(),
+      content: Joi.string().required(),
+      date: Joi.string().required(),
+    }
   }
-  
+
 }
