@@ -7,12 +7,12 @@ import router from '../../routes/index';
 
 const middleWare = [
   helmet(),           //It's best to use Helmet early in your middleware stack so that its headers are sure to be set.
-  parser.json(),      //Returns middleware that only parses json and only looks at requests where the Content-Type header matches the type option. 
-  parser.urlencoded({ extended: true }), //The "extended" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded.
   cors({
     allowedHeaders: ['Content-type', 'Authorization'],
     methods: ['GET', 'POST', 'PUT','DELETE', 'OPTIONS']
-  })
+  }),
+  parser.json(),      //Returns middleware that only parses json and only looks at requests where the Content-Type header matches the type option. 
+  parser.urlencoded({ extended: true }) //The "extended" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded.
 ]
 
 class App {
