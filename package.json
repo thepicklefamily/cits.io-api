@@ -23,8 +23,15 @@
   },
   "homepage": "https://github.com/thepicklefamily/cits.io-api#readme",
   "dependencies": {
+    "bcrypt": "^1.0.3",
+    "cors": "^2.8.4",
+    "express-validation": "^1.0.2",
+    "helmet": "^3.10.0",
+    "joi": "^13.1.1",
+    "jsonwebtoken": "^8.1.1",
     "lodash": "^4.17.4",
-    "npm-run-all": "^4.1.2"
+    "npm-run-all": "^4.1.2",
+    "passport": "^0.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0"
