@@ -29,16 +29,20 @@ export const editArticleController = async (req, res) => {
 
 export const deleteArticleController = async (req, res) => {
   try {
-
+    const data = await deleteArticleQuery(req.body);
+    success('deleteArticleController - successfully deleted article', JSON.stringify(data));
+    return res.status(200).send(data);
   } catch (err) {
-    
+    error('deleteArticleController - error= ', err);
   }
 }
 
 export const fetchAllArticlesController = async (req, res) => {
   try {
-
+    const data = await fetchAllArticlesQuery(req.params);
+    success('fetchAllArticlesController - successfully deleted article', JSON.stringify(data));
+    return res.status(200).send(data);
   } catch (err) {
-    
+    error('fetchAllArticlesController - error= ', err);
   }
 }

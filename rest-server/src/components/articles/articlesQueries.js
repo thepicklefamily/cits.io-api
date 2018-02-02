@@ -40,9 +40,9 @@ export const deleteArticleQuery = async body => {
   
 }
 
-export const fetchAllArticlesQuery = async body => {
+export const fetchAllArticlesQuery = async params => {
   try {
-    const queryString = await fetchAllArticlesHelper(body);
+    const queryString = await fetchAllArticlesHelper(params);
     const data = await db.queryAsync(queryString);
     success('fetchAllArticlesQuery - successfully inserted Data', JSON.stringify(data));
     return data;
