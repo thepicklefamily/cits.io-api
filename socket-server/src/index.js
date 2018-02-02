@@ -2,15 +2,16 @@ const http = require('http');
 const SocketIo = require('socket.io');
 const { each } = require('lodash');
 
-const clientEvents = require('./clientEvents');
+const log = require('./lib/log');
 const Rooms = require('./rooms');
+const clientEvents = require('./clientEvents');
 
 const server = http.createServer();
 const io = SocketIo(server);
 const rooms = new Rooms(io);
 
 io.on('connection', (client) => {
-  console.log('client connected');
+  log('client connected');
   const { roomId } = client.handshake.query;
   const room = rooms.findOrCreate(roomId || 'default');
   client.join(room.get('id'));
@@ -22,5 +23,5 @@ io.on('connection', (client) => {
 
 const PORT = process.env.PORT || 4155;
 server.listen(PORT, () => {
-  console.log(`socket-server listening on ${PORT}`);
-})
+  log(`socket server listening on port ${PORT}`);
+});
