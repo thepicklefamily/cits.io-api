@@ -50,7 +50,7 @@ export const createUserTable = async () => {
         id SERIAL,
         full_name VARCHAR(255) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
-        username VARCHAR(255) NOT NULL,
+        username VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
         type INT NOT NULL,
         phonenumber VARCHAR(255) NOT NULL,
@@ -84,8 +84,8 @@ export const createPropertyTable = async () => {
       (
         id SERIAL,
         secret_key VARCHAR(255) NOT NULL,
-        name VARCHAR(255) UNIQUE NOT NULL,
-        address VARCHAR(255) NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        address VARCHAR(255) UNIQUE NOT NULL,
         CONSTRAINT properties_pk
           PRIMARY KEY(id)
       )
