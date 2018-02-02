@@ -1,11 +1,11 @@
 import { sign, verify } from 'jsonwebtoken';
 
 
-export const generateToken = async (username, id) => { // change email to username? ask avi
+export const generateToken = async (username, id) => { 
   const token = {};
   const payload = {
     expiresIn: '6h',
-    username, // username? ask jae
+    username, 
     id
   }
   token.accessToken = sign(payload, process.env.TOKEN_SECRET_KEY)
