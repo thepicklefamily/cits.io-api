@@ -47,15 +47,15 @@ export const createUserTable = async () => {
       `
       CREATE TABLE IF NOT EXISTS users
       (
-      id SERIAL,
-      full_name VARCHAR(255) NOT NULL,
-      email VARCHAR(255) UNIQUE NOT NULL,
-      username VARCHAR(255) NOT NULL,
-      password VARCHAR(255) NOT NULL,
-      type INT NOT NULL,
-      phonenumber VARCHAR(255) NOT NULL,
-      CONSTRAINT users_pk
-        PRIMARY KEY(id)
+        id SERIAL,
+        full_name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) UNIQUE NOT NULL,
+        username VARCHAR(255) NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        type INT NOT NULL,
+        phonenumber VARCHAR(255) NOT NULL,
+        CONSTRAINT users_pk
+          PRIMARY KEY(id)
       )
       `
     );
@@ -82,12 +82,12 @@ export const createPropertyTable = async () => {
       `
       CREATE TABLE IF NOT EXISTS properties
       (
-      id SERIAL,
-      secret_key VARCHAR(255) NOT NULL,
-      name VARCHAR(255) UNIQUE NOT NULL,
-      address VARCHAR(255) NOT NULL,
-      CONSTRAINT properties_pk
-        PRIMARY KEY(id)
+        id SERIAL,
+        secret_key VARCHAR(255) NOT NULL,
+        name VARCHAR(255) UNIQUE NOT NULL,
+        address VARCHAR(255) NOT NULL,
+        CONSTRAINT properties_pk
+          PRIMARY KEY(id)
       )
       `
     );
@@ -114,15 +114,15 @@ export const createPhonebookTable = async () => {
       `
       CREATE TABLE IF NOT EXISTS phonebooks
       (
-      id SERIAL,
-      company VARCHAR(255) NOT NULL,
-      service VARCHAR(255) NOT NULL,
-      contactInfo VARCHAR(255) NOT NULL,
-      propertyId INT NOT NULL,
-      CONSTRAINT phonebooks_pk
-        PRIMARY KEY(id),
-      CONSTRAINT fk_phonebooks_propertyId
-        FOREIGN KEY(propertyId) REFERENCES properties(id)
+        id SERIAL,
+        company VARCHAR(255) NOT NULL,
+        service VARCHAR(255) NOT NULL,
+        contactInfo VARCHAR(255) NOT NULL,
+        propertyId INT NOT NULL,
+        CONSTRAINT phonebooks_pk
+          PRIMARY KEY(id),
+        CONSTRAINT fk_phonebooks_propertyId
+          FOREIGN KEY(propertyId) REFERENCES properties(id)
       )
       `
     );
@@ -140,5 +140,43 @@ export const dropPhonebookTable = async () => {
     success('successfully dropped phonebooks table');
   } catch (err) {
     error('error dropping phonebooks table ', err);
+  }
+};
+
+export const createArticleTable = async () => {
+  try {
+    await db.queryAsync(
+      `
+      CREATE TABLE IF NOT EXISTS articles 
+      (
+        id SERIAL,
+        title VARCHAR(255) NOT NULL,
+        content VARCHAR(255) NOT NULL,
+        date VARCHAR(255) NOT NULL,
+        userId INT NOT NULL,
+        propertyId INT NOT NULL
+        CONSTRAINT articles_pk
+          PRIMARY KEY(id),
+        CONSTRAINT fk_articles_propertyId
+          FOREIGN KEY(propertyId) REFERENCES properties(id),
+        CONSTRAINT fk_articles_userId
+          FOREIGN KEY(userId) REFERENCES users(id)
+      )
+      `
+    );
+    success('successfully created articles table');
+  } catch (err) {
+    error('error creating articles table ', err);
+  }
+};
+
+export const dropArticleTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS articles`
+    );
+    success('successfully dropped articles table');
+  } catch (err) {
+    error('error dropping articles table ', err);
   }
 };
