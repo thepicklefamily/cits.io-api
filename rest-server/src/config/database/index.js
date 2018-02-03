@@ -31,7 +31,6 @@ db.on('error', (err) => {
   error('error in pg ', err);
 });
 
-
 db.connect();
 
 Promise.promisifyAll(db);
