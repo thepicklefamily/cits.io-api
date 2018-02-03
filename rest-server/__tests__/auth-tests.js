@@ -1,4 +1,4 @@
-const request = require('supertest');
+import request from 'supertest';
 import server from '../src/index.js';
 
 //to drop and create tables - SHOULD MATCH WHAT'S IN src\config\database\setup.js but without "process.exit()""
