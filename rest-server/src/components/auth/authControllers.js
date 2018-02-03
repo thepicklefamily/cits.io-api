@@ -18,7 +18,8 @@ export const signUpController = async (req, res) => {
       .send(rows[0]);
   } catch (err) {
     error('signUpController - error= ', err);
-    throw new Error(JSON.parse(err));
+    // throw new Error(JSON.parse(err));
+    return res.status(400).send(err); //Should let client know if there is an error, not throw an error
   }
 };
 
@@ -36,7 +37,8 @@ export const loginController = async (req, res) => {
       .send(rows[0]);
   } catch (err) {
     error('loginController - error= ', err);
-    throw new Error(err);
+    // throw new Error(err);
+    return res.status(400).send(err); //Should let client know if there is an error, not throw an error
   }
 };
 
