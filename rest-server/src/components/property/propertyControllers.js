@@ -23,7 +23,7 @@ export const getPropertyController = async (req, res) => {
     success('getPropertyController - successfully retrieved data', JSON.stringify(rows[0]));
     return res
       .status(200)
-      .send(rows[0]);
+      .send(rows);
   } catch (err) {
     error('getPropertyController - error= ', err);
     throw new Error(JSON.parse(err));
