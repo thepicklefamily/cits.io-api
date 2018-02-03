@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost:27017/test');
-const mongoDB = mongoose.connection;
 const { Schema } = mongoose;
 
-mongoDB.once('connected', () => {
-  console.log('Connected to mongoose database');
-});
+mongoose.connect('mongodb://localhost/sockets');
+
+var db = mongoose.connection;
+
+db.once('open', () => {
+  console.log('mongoose connected')
+})
 
 const messageSchema = new Schema({
   message: String,
@@ -15,3 +16,5 @@ const messageSchema = new Schema({
 });
 
 const Messages = mongoose.model('Messages', messageSchema);
+
+module.exports = messageSchema;
