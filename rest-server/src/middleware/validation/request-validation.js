@@ -27,9 +27,15 @@ export default {
     }
   },
 
-  getProperty: {
+  getPropertyByName: {
     query: {
       name: Joi.string().required()
+    }
+  },
+
+  getPropertyByID: {
+    query: {
+      id: Joi.number().integer().required()
     }
   },
 

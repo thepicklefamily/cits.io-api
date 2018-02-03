@@ -6,10 +6,18 @@ export const addPropertyHelper = ({ secret_key, name, address }) => {
   `;
 };
 
-export const getPropertyHelper = ({ name }) => {
+export const getPropertyByNameHelper = ({ name }) => {
   return `
     SELECT *
     FROM properties
     WHERE name='${name}'
+  `;
+};
+
+export const getPropertyByIDHelper = ({ id }) => {
+  return `
+    SELECT *
+    FROM properties
+    WHERE id='${id}'
   `;
 };
