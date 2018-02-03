@@ -1,10 +1,6 @@
 const request = require('supertest');
 import server from '../src/index.js';
 
-//maybe example expect statement: expect(res.body.username).to.equal('hotdog');
-
-//for front end testing, invoke something similar to reset dbs. and will need server to run
-
 //to drop and create tables - SHOULD MATCH WHAT'S IN src\config\database\setup.js but without "process.exit()""
 import {
   createUserTable,
