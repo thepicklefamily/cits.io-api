@@ -8,7 +8,6 @@ const clientEvents = require('./clientEvents');
 const PORT = process.env.PORT || 4155;
 
 
-
 io.on('connection', (socket) => {
   console.log('user connected');
   const { roomId } = socket.handshake.query;
