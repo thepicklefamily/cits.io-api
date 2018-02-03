@@ -1,7 +1,7 @@
 import db from '../../config/database';
 import { success, error } from '../../lib/log';
 
-import { addPropertyHelper, getPropertyHelper } from './propertySQLHelpers';
+import { addPropertyHelper, getPropertyByNameHelper, getPropertyByIDHelper } from './propertySQLHelpers';
 
 export const addPropertyQuery = async body => {
   try {
@@ -15,14 +15,26 @@ export const addPropertyQuery = async body => {
   }
 };
 
-export const getPropertyQuery = async body => {
+export const getPropertyByNameQuery = async body => {
   try {
-    const queryString = getPropertyHelper(body);
+    const queryString = getPropertyByNameHelper(body);
     const data = await db.queryAsync(queryString);
-    success('signUpQuery - successfully fetched data ', JSON.stringify(data));
+    success('getPropertyByNameQuery - successfully fetched data ', JSON.stringify(data));
     return data;
   } catch (err) {
-    error('signUpQuery - error= ', err);
+    error('getPropertyByNameQuery - error= ', err);
+    throw new Error(err);
+  }
+};
+
+export const getPropertyByIDQuery = async body => {
+  try {
+    const queryString = getPropertyByIDHelper(body);
+    const data = await db.queryAsync(queryString);
+    success('getPropertyByIDQuery - successfully fetched data ', JSON.stringify(data));
+    return data;
+  } catch (err) {
+    error('getPropertyByIDQuery - error= ', err);
     throw new Error(err);
   }
 };

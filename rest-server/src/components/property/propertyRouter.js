@@ -2,7 +2,7 @@ import express from 'express';
 import validate from 'express-validation';
 
 import formValidation from '../../middleware/validation/request-validation';
-import { addPropertyController, getPropertyController } from './propertyControllers';
+import { addPropertyController, getPropertyByNameController, getPropertyByIDController } from './propertyControllers';
 
 const router = express.Router();
 
@@ -14,10 +14,17 @@ router
   );
 
 router
-  .route('/fetch')
+  .route('/fetch/name')
   .get(
-    validate(formValidation.getProperty),
-    getPropertyController
+    validate(formValidation.getPropertyByName),
+    getPropertyByNameController
+  );
+
+router
+  .route('/fetch/ID')
+  .get(
+    validate(formValidation.getPropertyByID),
+    getPropertyByIDController
   );
 
 export default router;
