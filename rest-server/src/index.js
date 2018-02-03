@@ -1,9 +1,7 @@
 import http from 'http';
 import App from './config/express';
 import { success } from './lib/log';
-// import './config/database';
-
-// import './config/database/setup';
+import './config/database';
 
 const app = App.express;
 
@@ -14,3 +12,5 @@ server.listen(PORT, (err) => {
   if (err) throw new Error;
   success('successfully connected to port ', PORT);
 });
+
+export default server;
