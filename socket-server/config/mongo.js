@@ -7,7 +7,8 @@ const messageSchema = new Schema({
   message: String,
   username: String,
   roomname: String,
-  type: String
+  type: String,
+  date: { type: Date, default: Date.now }
 });
 
 const Messages = mongoose.model('Messages', messageSchema);

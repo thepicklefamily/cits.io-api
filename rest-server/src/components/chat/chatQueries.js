@@ -3,6 +3,7 @@ import { error, success } from '../../lib/log';
 import { Messages } from '../../../../socket-server/config/mongo'
 
 export const addMessageQuery = async (body) => {
+  console.log('dbody', body);
   const message = new Messages({
     message: body.message,
     username: body.username,
