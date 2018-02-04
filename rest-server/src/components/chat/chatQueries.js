@@ -27,5 +27,14 @@ export const getMessagesQuery = async () => {
   } catch (err) {
     error('getMessagesQuery err ', err);
   }
-  
+}
+
+export const getMostRecentMessageQuery = async () => {
+  try {
+    const data = await Messages.find().sort({"date": -1}).limit(1);
+    success('got new new in query', data);
+    return data;
+  } catch (err) {
+    error('newMessageQuery err ', err);
+  }
 }
