@@ -1,9 +1,9 @@
-import { addMessageHelper } from './chatMongoHelpers';
+// import { addMessageHelper } from './chatMongoHelpers';
 import { error, success } from '../../lib/log';
-import db from '../../../../socket-server/config/mongo'
+import { Messages } from '../../../../socket-server/config/mongo'
 
 export const addMessageQuery = async (body) => {
-  const message = new db.Messages({
+  const message = new Messages({
     message: body.message,
     username: body.username,
     roomname: body.roomname,
@@ -15,5 +15,16 @@ export const addMessageQuery = async (body) => {
     return data;
   } catch (err) {
     error('addMessageQuery ', err);
-  } 
+  }
+}
+
+export const getMessagesQuery = async () => {
+  try {
+    const data = await Messages.find();
+    success('retrieved Mongo messages ', data);
+    return data;
+  } catch (err) {
+    error('getMessagesQuery err ', err);
+  }
+  
 }
