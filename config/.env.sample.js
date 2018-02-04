@@ -14,8 +14,15 @@ const envBuild = {
     'AWS_PASSWORD=',
     'AWS_PORT=',
     'SALT_ROUNDS=10',
-    'TOKEN_SECRET_KEY=citsapi'
- ]
+    'TOKEN_SECRET_KEY=citsapi',
+  ],
+  'socket-server': [
+    'NODE_ENV=DEVELOPMENT',
+    'DEBUG=TRUE',
+    'HOST=http://localhost',
+    'PORT=4155',
+    'REST_SERVER_URL=http://localhost:3396'
+  ]
 };
 
 module.exports = envBuild;
