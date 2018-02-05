@@ -44,8 +44,8 @@ export const deleteArticleController = async (req, res) => {
 export const fetchAllArticlesController = async (req, res) => {
   try {
     const { rows } = await fetchAllArticlesQuery(req.params);
-    success('fetchAllArticlesController - successfully deleted article', JSON.stringify(rows));
-    return res.status(200).send(data);
+    success('fetchAllArticlesController - successfully fetched article', JSON.stringify(rows));
+    return res.status(200).send(rows);
   } catch (err) {
     error('fetchAllArticlesController - error= ', err);
   }
