@@ -1,9 +1,9 @@
-const serverInitialState = ({ socket, room }, payload) => {
+const serverInitialState = ({ io, socket, room }, payload) => {
   console.log('server initial state');
-  socket.emit('server.initialState', 'hey');
+  io.emit('server.initialState', 'hey');
 }
-const serverMessageReceive = ({ socket, room }, payload) => {
+const serverMessageReceive = ({ io, socket, room }, payload) => {
   console.log('server receiving message', payload);
-  socket.emit('server.message', payload);
+  io.emit('server.message', payload);
 }
 module.exports = { serverInitialState, serverMessageReceive };
