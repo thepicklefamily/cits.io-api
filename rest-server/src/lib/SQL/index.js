@@ -181,3 +181,35 @@ export const dropArticleTable = async () => {
     error('error dropping articles table ', err);
   }
 };
+
+export const createUsersPropertiesTable = async () => {
+  try {
+    await db.queryAsync(
+      `
+      CREATE TABLE IF NOT EXISTS users_properties 
+      (
+        user_id INT NOT NULL,
+        property_id INT NOT NULL,
+        CONSTRAINT fk_users_properties_property_id
+          FOREIGN KEY(property_id) REFERENCES properties(id),
+        CONSTRAINT fk_users_properties_user_id
+          FOREIGN KEY(user_id) REFERENCES users(id)
+      )
+      `
+    );
+    success('successfully created users_properties table');
+  } catch (err) {
+    error('error creating users_properties table ', err);
+  }
+};
+
+export const dropUsersPropertiesTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS users_properties`
+    );
+    success('successfully dropped users_properties table');
+  } catch (err) {
+    error('error dropping users_properties table ', err);
+  }
+};
