@@ -11,6 +11,5 @@ export const addTicketQuery = async body => {
     return data;
   } catch (err) {
     error('addTicketQuery - error= ', err);
-    return res.status(400).send(err); //Should let client know if there is an error, not throw an error
   }
 };
