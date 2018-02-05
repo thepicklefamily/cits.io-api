@@ -14,18 +14,18 @@ export const signUpController = async (req, res) => {
     rows[0].token = token;
     return res
       .status(200)
-      .append('authorization', JSON.stringify(token))
+      .append('authorization', JSON.stringify(token)) // fix this
       .send(rows[0]);
   } catch (err) {
     error('signUpController - error= ', err);
-    // throw new Error(JSON.parse(err));
-    return res.status(400).send(err); //Should let client know if there is an error, not throw an error
+    return res.status(400).send(err); 
   }
 };
 
 export const loginController = async (req, res) => {
   try {
     const { rows } = await loginQuery(req.body);
+    console.log('this is rows', rows);
     delete rows[0].password;
     const { id, username } = rows[0];
     success('loginController - successfully retrieved data ', JSON.stringify(rows[0]));
@@ -33,12 +33,11 @@ export const loginController = async (req, res) => {
     rows[0].token = token;
     return res
       .status(200)
-      .append('authorization', JSON.stringify(token))
+      .append('authorization', JSON.stringify(token)) // fix this 
       .send(rows[0]);
   } catch (err) {
     error('loginController - error= ', err);
-    // throw new Error(err);
-    return res.status(400).send(err); //Should let client know if there is an error, not throw an error
+    return res.status(400).send(err);
   }
 };
 
