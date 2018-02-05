@@ -10,18 +10,26 @@ import {
   createPropertyTable,
   dropPropertyTable,
   createPhonebookTable,
-  dropPhonebookTable
+  dropPhonebookTable,
+  createArticleTable,
+  dropArticleTable,
+  createTicketTable,
+  dropTicketTable
 } from '../src/lib/SQL/index.js';
 
 beforeAll( async () => {
   await dropDatabase();
-  await dropPhonebookTable();
+  await dropArticleTable();
+  await dropTicketTable();
+  await dropPhonebookTable(); // be wary of the order which the tables are dropping
   await dropPropertyTable();
   await dropUserTable();
   await createDatabase();
   await createUserTable();
   await createPropertyTable();
   await createPhonebookTable();
+  await createTicketTable();
+  await createArticleTable();
 });
 
 //The tests:
