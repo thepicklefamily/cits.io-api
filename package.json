@@ -8,6 +8,7 @@
     "start:rest-server": "cd rest-server && npm start",
     "start": "npm-run-all -p start:rest-server",
     "setup:rest-server": "cd rest-server && npm start",
+    "setup:socket-server": "cd socket-server && npm start",
     "db:setup:rest-server": "cd rest-server && babel-node src/config/database/setup.js",
     "buildEnv": "node bin/buildEnv.js"
   },
