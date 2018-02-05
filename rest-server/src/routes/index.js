@@ -5,12 +5,13 @@ import propertyRouter from '../components/property/propertyRouter';
 import phonebookRouter from '../components/phonebook/phonebookRouter';
 import articleRouter from '../components/articles/articlesRouter';
 import chatRouter from '../components/chat/chatRouter';
+import ticketRouter from '../components/ticket/ticketRouter';
 
 const router = express.Router();
 
 router.use('/auth', authRouter);
 // router.use('/users', userRouter);
-// router.use('/tickets', ticketRouter);
+router.use('/tickets', ticketRouter);
 // router.use('/posts', postRouter);
 router.use('/articles', articleRouter);
 router.use('/phonebooks', phonebookRouter);

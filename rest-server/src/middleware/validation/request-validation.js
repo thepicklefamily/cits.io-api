@@ -78,4 +78,18 @@ export default {
     }
   },
 
-}
+  addTicket: {
+    body: {
+      category: Joi.string().required(),
+      apt_num: Joi.string().required(),
+      date: Joi.string().required(),
+      subject: Joi.string().required(),
+      description: Joi.string().required(),
+      photo_url: Joi.string().required(),
+      status: Joi.string().required(),
+      userId: Joi.string().required(),
+      propertyId: Joi.string().required()
+    }
+  }
+
+};
