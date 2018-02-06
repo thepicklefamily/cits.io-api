@@ -9,7 +9,7 @@ import ticketRouter from '../components/ticket/ticketRouter';
 import tenantTicketRouter from '../components/tenantTicket/tenantTicketRouter';
 import propTicketRouter from '../components/propTicket/propTicketRouter';
 import userTicketRouter from '../components/userTicket/userTicketRouter';
-import usersPropertiesRouter from '../components/usersProperties/usersPropertiesRouter';
+import usersPropertiesAptUnitsRouter from '../components/usersPropertiesAptUnits/usersPropertiesAptUnitsRouter';
 import aptUnitsRouter from '../components/aptUnits/aptUnitsRouter';
 
 const router = express.Router();
@@ -27,7 +27,7 @@ router.use('/propTickets', propTicketRouter);
 router.use('/userTickets', userTicketRouter);
 // router.use('/articlePosts', articlePostRouter);
 // router.use('/chatPosts', chatPostRouter);
-router.use('/usersProperties', usersPropertiesRouter);
+router.use('/usersPropertiesAptUnits', usersPropertiesAptUnitsRouter);
 router.use('/aptUnits', aptUnitsRouter);
 
 

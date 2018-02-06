@@ -224,35 +224,38 @@ export const dropTicketTable = async () => {
   }
 };
 
-export const createUsersPropertiesTable = async () => {
+export const createUsersPropertiesAptUnitsTable = async () => {
   try {
     await db.queryAsync(
       `
-      CREATE TABLE IF NOT EXISTS users_properties 
+      CREATE TABLE IF NOT EXISTS users_properties_apt_units
       (
         user_id INT NOT NULL,
         property_id INT NOT NULL,
-        CONSTRAINT fk_users_properties_property_id
+        apt_unit_id INT,
+        CONSTRAINT fk_users_properties_apt_units_property_id
           FOREIGN KEY(property_id) REFERENCES properties(id),
-        CONSTRAINT fk_users_properties_user_id
-          FOREIGN KEY(user_id) REFERENCES users(id)
+        CONSTRAINT fk_users_properties_apt_units_user_id
+          FOREIGN KEY(user_id) REFERENCES users(id),
+        CONSTRAINT fk_users_properties_apt_units_apt_unit_id
+          FOREIGN KEY(apt_unit_id) REFERENCES apt_units(id)
       )
       `
     );
-    success('successfully created users_properties table');
+    success('successfully created users_properties_apt_units table');
   } catch (err) {
-    error('error creating users_properties table ', err);
+    error('error creating users_properties_apt_units table ', err);
   }
 };
 
-export const dropUsersPropertiesTable = async () => {
+export const dropUsersPropertiesAptUnitsTable = async () => {
   try {
     await db.query(
-      `DROP TABLE IF EXISTS users_properties`
+      `DROP TABLE IF EXISTS users_properties_apt_units`
     );
-    success('successfully dropped users_properties table');
+    success('successfully dropped users_properties_apt_units table');
   } catch (err) {
-    error('error dropping users_properties table ', err);
+    error('error dropping users_properties_apt_units table ', err);
   }
 };
 
@@ -263,7 +266,7 @@ export const createAptUnitsTable = async () => {
       CREATE TABLE IF NOT EXISTS apt_units
       (
         id SERIAL,
-        unit VARCHAR(255) NOT NULL,
+        unit VARCHAR(255),
         CONSTRAINT apt_units_pk
           PRIMARY KEY(id)
       )
