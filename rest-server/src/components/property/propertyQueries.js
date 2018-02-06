@@ -11,7 +11,6 @@ export const addPropertyQuery = async body => {
     return data;
   } catch (err) {
     error('addPropertyQuery - error= ', err);
-    throw new Error(err);
   }
 };
 
@@ -23,7 +22,6 @@ export const getPropertyByNameQuery = async body => {
     return data;
   } catch (err) {
     error('getPropertyByNameQuery - error= ', err);
-    throw new Error(err);
   }
 };
 
@@ -35,6 +33,5 @@ export const getPropertyByIDQuery = async body => {
     return data;
   } catch (err) {
     error('getPropertyByIDQuery - error= ', err);
-    throw new Error(err);
   }
 };

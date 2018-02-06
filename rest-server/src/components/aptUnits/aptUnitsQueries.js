@@ -11,7 +11,6 @@ export const addAptUnitQuery = async body => {
     return data;
   } catch (err) {
     error('addAptUnitQuery - error= ', err);
-    throw new Error(err);
   }
 };
 
@@ -23,6 +22,5 @@ export const getAptUnitByIDQuery = async body => {
     return data;
   } catch (err) {
     error('getAptUnitByIDQuery - error= ', err);
-    throw new Error(err);
   }
 };
