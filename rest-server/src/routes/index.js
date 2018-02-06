@@ -8,6 +8,7 @@ import chatRouter from '../components/chat/chatRouter';
 import ticketRouter from '../components/ticket/ticketRouter';
 import tenantTicketRouter from '../components/tenantTicket/tenantTicketRouter';
 import propTicketRouter from '../components/propTicket/propTicketRouter';
+import userTicketRouter from '../components/userTicket/userTicketRouter';
 
 const router = express.Router();
 
@@ -21,9 +22,9 @@ router.use('/chat', chatRouter);
 router.use('/tickets', ticketRouter);
 router.use('/tenantTickets', tenantTicketRouter);
 router.use('/propTickets', propTicketRouter);
-// router.use('userTickets', userTicketRouter);
-// router.use('articlePosts', articlePostRouter);
-// router.use('chatPosts', chatPostRouter);
+router.use('/userTickets', userTicketRouter);
+// router.use('/articlePosts', articlePostRouter);
+// router.use('/chatPosts', chatPostRouter);
 
 
 export default router;
