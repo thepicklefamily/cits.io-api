@@ -10,6 +10,7 @@ import tenantTicketRouter from '../components/tenantTicket/tenantTicketRouter';
 import propTicketRouter from '../components/propTicket/propTicketRouter';
 import userTicketRouter from '../components/userTicket/userTicketRouter';
 import usersPropertiesRouter from '../components/usersProperties/usersPropertiesRouter';
+import aptUnitsRouter from '../components/aptUnits/aptUnitsRouter';
 
 const router = express.Router();
 
@@ -27,6 +28,7 @@ router.use('/userTickets', userTicketRouter);
 // router.use('/articlePosts', articlePostRouter);
 // router.use('/chatPosts', chatPostRouter);
 router.use('/usersProperties', usersPropertiesRouter);
+router.use('/aptUnits', aptUnitsRouter);
 
 
 export default router;

@@ -12,7 +12,9 @@ import {
   createTicketTable,
   dropTicketTable,
   createUsersPropertiesTable,
-  dropUsersPropertiesTable
+  dropUsersPropertiesTable,
+  createAptUnitsTable,
+  dropAptUnitsTable
 } from '../../lib/SQL';
 
 const setup = async () => {
@@ -21,11 +23,13 @@ const setup = async () => {
   await dropArticleTable();
   await dropTicketTable();
   await dropPhonebookTable(); // be wary of the order which the tables are dropping
+  await dropAptUnitsTable();
   await dropPropertyTable();
   await dropUserTable();
   await createDatabase();
   await createUserTable();
   await createPropertyTable();
+  await createAptUnitsTable();
   await createPhonebookTable();
   await createTicketTable();
   await createArticleTable();

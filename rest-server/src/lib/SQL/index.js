@@ -255,3 +255,33 @@ export const dropUsersPropertiesTable = async () => {
     error('error dropping users_properties table ', err);
   }
 };
+
+export const createAptUnitsTable = async () => {
+  try {
+    await db.queryAsync(
+      `
+      CREATE TABLE IF NOT EXISTS apt_units
+      (
+        id SERIAL,
+        unit VARCHAR(255) NOT NULL,
+        CONSTRAINT apt_units_pk
+          PRIMARY KEY(id)
+      )
+      `
+    );
+    success('successfully created apt_units table');
+  } catch (err) {
+    error('error creating apt_units table ', err)
+  }
+};
+
+export const dropAptUnitsTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS apt_units`
+    );
+    success('successfully dropped apt_units table');
+  } catch (err) {
+    error('error dropping apt_units table ', err);
+  }
+};
