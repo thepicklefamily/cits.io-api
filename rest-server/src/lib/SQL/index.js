@@ -182,6 +182,48 @@ export const dropArticleTable = async () => {
   }
 };
 
+export const createTicketTable = async () => {
+  try {
+    await db.queryAsync(
+      `
+      CREATE TABLE IF NOT EXISTS tickets 
+      (
+        id SERIAL,
+        category VARCHAR(255) NOT NULL,
+        apt_num VARCHAR(255) NOT NULL,
+        date VARCHAR(255) NOT NULL,
+        subject VARCHAR(255) NOT NULL,
+        description VARCHAR(255) NOT NULL,
+        photo_url VARCHAR(255) NOT NULL,
+        status VARCHAR(255) NOT NULL,
+        userId INT NOT NULL,
+        propertyId INT NOT NULL,
+        CONSTRAINT tickets_pk
+          PRIMARY KEY(id),
+        CONSTRAINT fk_tickets_propertyId
+          FOREIGN KEY(propertyId) REFERENCES properties(id),
+        CONSTRAINT fk_tickets_userId
+          FOREIGN KEY(userId) REFERENCES users(id)
+      )
+      `
+    );
+    success('successfully created tickets table');
+  } catch (err) {
+    error('error creating tickets table ', err);
+  }
+};
+
+export const dropTicketTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS tickets`
+    );
+    success('successfully dropped tickets table');
+  } catch (err) {
+    error('error dropping tickets table ', err);
+  }
+};
+
 export const createUsersPropertiesTable = async () => {
   try {
     await db.queryAsync(
