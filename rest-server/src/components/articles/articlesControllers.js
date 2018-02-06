@@ -9,6 +9,7 @@ import { success, error } from '../../lib/log';
 
 export const addArticleController = async (req, res) => {
   try {
+    console.log(req.body)
     const { rows } = await addArticleQuery(req.body);
     const { id, title, content, date, photo_url, userId, propertyId } = rows[0]
     success('addArticleController - successfully added article', JSON.stringify(rows[0]));
@@ -20,9 +21,7 @@ export const addArticleController = async (req, res) => {
 
 export const editArticleController = async (req, res) => {
   try {
-    console.log(req.body)
     const { rows } = await editArticleQuery(req.body);
-    console.log(rows);
     const { id, title, content, date, photo_url, userId, propertyId } = rows[0];
     success('editArticleController - successfully updated article', JSON.stringify(rows[0]));
     return res.status(200).send(rows[0]);
@@ -44,8 +43,8 @@ export const deleteArticleController = async (req, res) => {
 export const fetchAllArticlesController = async (req, res) => {
   try {
     const { rows } = await fetchAllArticlesQuery(req.params);
-    success('fetchAllArticlesController - successfully deleted article', JSON.stringify(rows));
-    return res.status(200).send(data);
+    success('fetchAllArticlesController - successfully fetched article', JSON.stringify(rows));
+    return res.status(200).send(rows);
   } catch (err) {
     error('fetchAllArticlesController - error= ', err);
   }
