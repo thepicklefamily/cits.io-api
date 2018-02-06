@@ -1,4 +1,4 @@
-const request = require('supertest');
+import request from 'supertest';
 import server from '../src/index.js';
 
 //to drop and create tables - SHOULD MATCH WHAT'S IN src\config\database\setup.js but without "process.exit()""
@@ -10,18 +10,26 @@ import {
   createPropertyTable,
   dropPropertyTable,
   createPhonebookTable,
-  dropPhonebookTable
+  dropPhonebookTable,
+  createArticleTable,
+  dropArticleTable,
+  createTicketTable,
+  dropTicketTable
 } from '../src/lib/SQL/index.js';
 
 beforeAll( async () => {
   await dropDatabase();
-  await dropPhonebookTable();
+  await dropArticleTable();
+  await dropTicketTable();
+  await dropPhonebookTable(); // be wary of the order which the tables are dropping
   await dropPropertyTable();
   await dropUserTable();
   await createDatabase();
   await createUserTable();
   await createPropertyTable();
   await createPhonebookTable();
+  await createTicketTable();
+  await createArticleTable();
 });
 
 //The tests:
