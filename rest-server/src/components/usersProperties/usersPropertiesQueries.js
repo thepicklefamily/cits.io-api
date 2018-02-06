@@ -10,7 +10,6 @@ export const addUsersPropertiesQuery = async body => {
     return data;
   } catch (err) {
     error('addUsersPropertiesQuery - error= ', err);
-    throw new Error(err);
   }
 };
 export const getUsersPropertiesQuery = async body => {
@@ -21,6 +20,5 @@ export const getUsersPropertiesQuery = async body => {
     return data;
   } catch (err) {
     error('getUsersPropertiesQuery - error= ', err);
-    throw new Error(err);
   }
 };
