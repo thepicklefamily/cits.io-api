@@ -6,7 +6,7 @@ export const getTicketsByTenantIDQuery = async params => {
   try {
     const queryString = getTicketsByTenantIDHelper(params);
     const data = await db.queryAsync(queryString);
-    success('getTicketsByTenantIDQuery - successfully inserted data ', JSON.stringify(data));
+    success('getTicketsByTenantIDQuery - successfully retrieved data ', JSON.stringify(data));
     return data;
   } catch (err) {
     error('getTicketsByTenantIDQuery - error= ', err);
