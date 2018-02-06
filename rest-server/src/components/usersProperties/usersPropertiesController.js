@@ -1,4 +1,3 @@
-import db from '../../config/database';
 import { addUsersPropertiesQuery, getUsersPropertiesQuery } from './usersPropertiesQueries';
 import { success, error } from '../../lib/log';
 
