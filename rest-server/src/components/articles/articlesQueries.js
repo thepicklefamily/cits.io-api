@@ -47,7 +47,7 @@ export const fetchAllArticlesQuery = async params => {
   try {
     const queryString = await fetchAllArticlesHelper(params);
     const data = await db.queryAsync(queryString);
-    success('fetchAllArticlesQuery - successfully inserted Data', JSON.stringify(data));
+    success('fetchAllArticlesQuery - successfully fetched Data', JSON.stringify(data));
     return data;
   } catch (err) {
     error('fetchAllArticlesQuery - error=', err);
