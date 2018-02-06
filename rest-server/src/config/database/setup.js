@@ -14,8 +14,8 @@ import {
 } from '../../lib/SQL';
 
 const setup = async () => {
-  await dropUsersPropertiesTable();
   await dropDatabase();
+  await dropUsersPropertiesTable();
   await dropArticleTable();
   await dropPhonebookTable(); // be wary of the order which the tables are dropping
   await dropPropertyTable();
