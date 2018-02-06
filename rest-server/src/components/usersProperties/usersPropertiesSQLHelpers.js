@@ -8,7 +8,7 @@ export const addUsersPropertiesHelper = ({ userID, propertyID }) => {
 
 export const getUsersPropertiesHelper = ({ userID }) => {
   return `
-    SELECT *
+    SELECT id, name, address, secret_key
     FROM properties AS p
       INNER JOIN users_properties AS up
       ON (p.id = up.property_id)
