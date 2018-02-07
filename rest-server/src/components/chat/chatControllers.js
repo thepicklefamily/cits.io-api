@@ -9,7 +9,7 @@ export const addMessage = async (req, res) => {
     success('successfully added message', data);
     return res.status(200).send(data);
   } catch (err) {
-    console.log('addMessage Controller error ', err);
+    error('addMessage Controller error ', err);
   }
 }
 export const getMessages = async (req, res) => {
