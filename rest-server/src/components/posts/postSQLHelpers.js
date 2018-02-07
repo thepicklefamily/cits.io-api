@@ -3,7 +3,7 @@ export const addPostHelper = ({ username, text, date, parent_id, article_id }) =
     INSERT INTO posts (username, text, date, parentId, articleId)
     VALUES ('${username}', '${text}', '${date}', ${parent_id}, ${article_id})
     RETURNING id, username, text, date, parentId, articleId
-  `
+  `;
 }
 
 export const updatePostHelper = ({ post_id, text, date }) => {
@@ -13,14 +13,16 @@ export const updatePostHelper = ({ post_id, text, date }) => {
           date = '${date}'
     WHERE id = ${post_id}
     RETURNING id, username, text, date, parentId, articleId
-  `
+  `;
 }
 
 export const deletePostHelper = ({ post_id }) => {
-  return `DELETE FROM posts WHERE id = ${post_id}`
+  return `DELETE FROM posts WHERE id = ${post_id}`;
 }
 
 //fetchpost should return a tree of posts;
-
+export const fetchPostsHelper = ({ article_id }) => {
+  return  `SELECT * FROM posts`;
+}
 
 
