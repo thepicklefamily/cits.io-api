@@ -31,9 +31,11 @@ export const loginController = async (req, res) => {
     success('loginController - successfully retrieved data ', JSON.stringify(rows[0]));
     const token = await generateToken(id, username);
     rows[0].token = token;
+    console.log('this is server side login payload', rows[0]);
     return res
       .status(200)
-      .append('authorization', JSON.stringify(token)) // fix this 
+      .set('authorization', rows[0].token)
+      .set('Access-Control-Expose-Headers', 'authorization')
       .send(rows[0]);
   } catch (err) {
     error('loginController - error= ', err);
