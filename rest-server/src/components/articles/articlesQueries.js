@@ -10,7 +10,6 @@ export const addArticleQuery = async body => {
     return data;
   } catch (err) {
     error('addArticleQuery - error=', err);
-    throw new Error(err);
   }
 }
 
@@ -26,7 +25,6 @@ export const editArticleQuery = async body => {
     return data;
   } catch (err) {
     error('editArticleQuery - error=', err);
-    throw new Error(err);
   }
 }
 
@@ -38,7 +36,6 @@ export const deleteArticleQuery = async params => {
     return data;
   } catch (err) {
     error('deleteArticleQuery - error=', err);
-    throw new Error(err);
   }
   
 }
@@ -51,6 +48,5 @@ export const fetchAllArticlesQuery = async params => {
     return data;
   } catch (err) {
     error('fetchAllArticlesQuery - error=', err);
-    throw new Error(err);
   }  
 }
