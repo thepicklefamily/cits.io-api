@@ -1,0 +1,35 @@
+import { db } from "../../config/database";
+import { addPostQuery, updatePostQuery, deletePostQuery } from "./postQueries";
+import { success, error } from "../../lib/log";
+
+export const addPostController = async (req, res) => {
+  try {
+    const { rows } = await addPostQuery(req.body);
+    const {id, username, text, date, parentId, articleId } = rows[0];
+    success('addPostController - successfully added post', JSON.stringify(rows[0]));
+    return res.status(200).send(rows[0]);
+  } catch (err) {
+    error('addPostController - error= ', err);
+  }
+};
+
+export const updatePostController = async (req, res) => {
+  try {
+    const { rows } = await updatePostQuery(req.body);
+    const {id, username, text, date, parentId, articleId } = rows[0];
+    success('updatePostController - successfully updated post', JSON.stringify(rows[0]));
+    return res.status(200).send(rows[0]);
+  } catch (err) {
+    error('updatePostController - error= ', err);
+  }
+}
+
+export const deletePostController = async (req, res) => {
+  try {
+  const { data } = await deletePostQuery(req.params);
+  success('deletePostController - successfully deleted post', JSON.stringify(data));
+  return res.status(200).send(data);
+  } catch (err) {
+    error('deletePostController - error= ', err);
+  }
+}
