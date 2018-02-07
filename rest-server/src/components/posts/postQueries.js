@@ -1,5 +1,5 @@
 import db from '../../config/database';
-import { addPostHelper, updatePostHelper, deletePostHelper } from "./postSQLHelpers";
+import { addPostHelper, updatePostHelper, deletePostHelper, fetchPostsHelper } from "./postSQLHelpers";
 import { success, error } from '../../lib/log';
 
 export const addPostQuery = async body => {
@@ -39,3 +39,14 @@ export const deletePostQuery = async params => {
   }
 };
 
+export const fetchPostsQuery = async params => {
+  try {
+    const queryString = await fetchPostsHelper(params);
+    const data = await db.queryAsync(queryString);
+    success('fetchPostsQuery - successfully fetched Data', JSON.stringify(data));
+    return data;
+  } catch (err) {
+    error('fetchPostsQuery - error=', err);
+    throw new Error(err);
+  }
+}

@@ -1,5 +1,5 @@
 import { db } from "../../config/database";
-import { addPostQuery, updatePostQuery, deletePostQuery } from "./postQueries";
+import { addPostQuery, updatePostQuery, deletePostQuery, fetchPostsQuery } from "./postQueries";
 import { success, error } from "../../lib/log";
 
 export const addPostController = async (req, res) => {
@@ -31,5 +31,15 @@ export const deletePostController = async (req, res) => {
   return res.status(200).send(data);
   } catch (err) {
     error('deletePostController - error= ', err);
+  }
+}
+
+export const fetchPostsController = async (req, res) => {
+  try {
+    const { rows } = await fetchPostsQuery(req.params);
+    success('fetchPostsController - successfully fetched posts', JSON.stringify(rows));
+    return res.status(200).send(rows);
+  } catch (err) {
+    error('fetchPostsController - error= ', err);
   }
 }
