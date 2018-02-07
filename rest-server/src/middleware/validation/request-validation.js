@@ -39,6 +39,12 @@ export default {
     }
   },
 
+  addAptUnit: {
+    body: {
+      unit: Joi.string().required()
+    }
+  },
+  
   addPhonebook: {
     body: {
       company: Joi.string().required(),
