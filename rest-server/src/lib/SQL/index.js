@@ -272,6 +272,15 @@ export const createAptUnitsTable = async () => {
       )
       `
     );
+
+    await db.queryAsync(
+      `
+        INSERT into apt_units (unit)
+        VALUES ('null')
+        RETURNING id, unit
+      `
+    )
+
     success('successfully created apt_units table');
   } catch (err) {
     error('error creating apt_units table ', err)
