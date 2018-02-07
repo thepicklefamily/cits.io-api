@@ -14,13 +14,16 @@ import {
   createUsersPropertiesAptUnitsTable,
   dropUsersPropertiesAptUnitsTable,
   createAptUnitsTable,
-  dropAptUnitsTable
+  dropAptUnitsTable,
+  createPostTable,
+  dropPostTable
 } from '../../lib/SQL';
 
 const setup = async () => {
   // be wary of the order which the tables are dropping
   await dropDatabase();
   await dropUsersPropertiesAptUnitsTable();
+  await dropPostTable();
   await dropArticleTable();
   await dropTicketTable();
   await dropPhonebookTable(); 
@@ -34,6 +37,7 @@ const setup = async () => {
   await createPhonebookTable();
   await createTicketTable();
   await createArticleTable();
+  await createPostTable();
   await createUsersPropertiesAptUnitsTable();
   process.exit();
 };

@@ -15,7 +15,6 @@ export const addArticleQuery = async body => {
 
 export const editArticleQuery = async body => {
   try {
-    console.log('asdf')
     const queryString = await editArticleHelper(body);
     console.log(queryString)
     const data = await db.queryAsync(queryString);
