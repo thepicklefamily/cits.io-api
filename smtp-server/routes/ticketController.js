@@ -1,3 +1,7 @@
+require('dotenv').config();
+const PASS = process.env.PASS;
+const EMAIL = process.env.EMAIL
+
 const TicketEmailController = {
   sendTicketEmail: (req, res) => {
     const output = `
@@ -16,8 +20,8 @@ const TicketEmailController = {
       service: 'gmail',
       secure: false, // true for 465, false for other ports
       auth: {
-        user: account.user, // generated ethereal user
-        pass: account.pass  // generated ethereal password
+        user: EMAIL, // generated ethereal user
+        pass: PASS  // generated ethereal password
       }
     });
 
