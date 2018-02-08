@@ -87,11 +87,11 @@ export default {
   addTicket: {
     body: {
       category: Joi.string().required(),
-      apt_num: Joi.string().required(),
+      apt_num: Joi,
       date: Joi.string().required(),
       subject: Joi.string().required(),
       description: Joi.string().required(),
-      photo_url: Joi.string().required(),
+      photo_url: Joi,
       status: Joi.string().required(),
       userId: Joi.number().integer().required(),
       propertyId: Joi.number().integer().required()
@@ -101,11 +101,11 @@ export default {
   editTicket: {
     body: {
       category: Joi.string().required(),
-      apt_num: Joi.string().required(),
+      apt_num: Joi,
       date: Joi.string().required(),
       subject: Joi.string().required(),
       description: Joi.string().required(),
-      photo_url: Joi.string().required(),
+      photo_url: Joi,
       status: Joi.string().required(),
       userid: Joi.number().integer().required(),
       propertyid: Joi.number().integer().required(),
