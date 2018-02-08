@@ -4,7 +4,7 @@ const EMAIL = process.env.EMAIL
 const nodemailer = require('nodemailer');
 
 const TicketEmailController = {
-  sendTicketEmail: async (req, res) => {
+  sendTicketEmail: async (req, res) => {  //this function emails the tenant ticket to the manager.
     const output = `
       <p>You have a new tenant ticket.</p>
       <h3>Ticket Details</h3>

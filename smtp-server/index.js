@@ -19,3 +19,9 @@ app.listen(PORT, () => {
 })
 
 // endpoint for emailticket is 'http://localhost:8080/tickets/sendTicketEmail'
+// addTicketEmail() {
+//   axios.post('http://localhost:8080/tickets/sendTicketEmail')
+//     .then((res) => {
+//       console.log('success', res);
+//     })
+// }  add this function to the front end at some point when adding ticket info.
