@@ -14,7 +14,8 @@ export const signUpController = async (req, res) => {
     rows[0].token = token;
     return res
       .status(200)
-      .append('authorization', JSON.stringify(token)) // fix this
+      .set('authorization', JSON.stringify(token))
+      .set('Access-Control-Expose-Headers', 'authorization')
       .send(rows[0]);
   } catch (err) {
     error('signUpController - error= ', err);
@@ -25,7 +26,6 @@ export const signUpController = async (req, res) => {
 export const loginController = async (req, res) => {
   try {
     const { rows } = await loginQuery(req.body);
-    console.log('this is rows', rows);
     delete rows[0].password;
     const { id, username } = rows[0];
     success('loginController - successfully retrieved data ', JSON.stringify(rows[0]));
@@ -33,7 +33,8 @@ export const loginController = async (req, res) => {
     rows[0].token = token;
     return res
       .status(200)
-      .append('authorization', JSON.stringify(token)) // fix this 
+      .set('authorization', JSON.stringify(token))
+      .set('Access-Control-Expose-Headers', 'authorization')
       .send(rows[0]);
   } catch (err) {
     error('loginController - error= ', err);

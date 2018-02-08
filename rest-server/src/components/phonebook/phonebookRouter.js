@@ -21,5 +21,4 @@ router.route('/update')
 router.route('/delete/:id')
   .delete(deletePropertyPhonebookController);
 
-
 export default router;
