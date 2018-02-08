@@ -305,7 +305,7 @@ export const createPostTable = async () => {
         username VARCHAR(255) NOT NULL,
         text VARCHAR(255) NOT NULL,
         date VARCHAR(255) NOT NULL,
-        parentId INT,
+        parentId INT DEFAULT NULL,
         articleId INT NOT NULL,
         CONSTRAINT posts_pk
           PRIMARY KEY(id),
