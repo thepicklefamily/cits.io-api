@@ -4,16 +4,22 @@ const EMAIL = process.env.EMAIL
 const nodemailer = require('nodemailer');
 
 const TicketEmailController = {
-  sendTicketEmail: async (req, res) => {  //this function emails the tenant ticket to the manager.
+  sendTicketEmail: async (req, res) => { 
+    await console.log('reqbody in sneteicket', req.body); //this function emails the tenant ticket to the manager.
     const output = `
       <p>You have a new tenant ticket.</p>
       <h3>Ticket Details</h3>
       <ul>
-        <li>Name: CHANGE TO req.body.name</li>
-        <li>Email: CHANGE TO req.body.email</li>
-        <li>Phone: CHANGE TO req.body.phone</li>
+        <li>Name: ${req.body.name}</li>
+        <li>Email: ${req.body.email}</li>
+        <li>Phone: ${req.body.phone}</li>
+        <li>Apt#: ${req.body.apt_num}</li>
+        <li>Subject: ${req.body.subject}</li>
+        <li>Category: ${req.body.category}</li>
+        <li>Date: ${req.body.date}</li>
       </ul>
-      <a href="http://localhost:3000">CHANGE TO ticket link</a>
+      <p>${req.body.description}</p>
+      <a href="http://localhost:3000/tickets">CHANGE TO ticket link</a>
     `;
     let transporter = nodemailer.createTransport({
       service: 'Gmail',
@@ -44,7 +50,7 @@ const TicketEmailController = {
         console.log('Message sent: %s', info.messageId);
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
       });
-      res.status(200).send('sup?');
+      res.status(200).send('successfully sent ticket');
     } catch (err) {
       console.log('error sending email');
       res.status(400).send(err);
