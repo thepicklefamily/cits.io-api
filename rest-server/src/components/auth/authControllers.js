@@ -14,7 +14,8 @@ export const signUpController = async (req, res) => {
     rows[0].token = token;
     return res
       .status(200)
-      .append('authorization', JSON.stringify(token)) // fix this
+      .set('authorization', token)
+      .set('Access-Control-Expose-Headers', 'authorization')
       .send(rows[0]);
   } catch (err) {
     error('signUpController - error= ', err);
@@ -34,7 +35,7 @@ export const loginController = async (req, res) => {
     console.log('this is server side login payload', rows[0]);
     return res
       .status(200)
-      .set('authorization', rows[0].token)
+      .set('authorization', token)
       .set('Access-Control-Expose-Headers', 'authorization')
       .send(rows[0]);
   } catch (err) {
