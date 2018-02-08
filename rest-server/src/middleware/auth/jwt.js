@@ -4,7 +4,7 @@ import { sign, verify } from 'jsonwebtoken';
 export const generateToken = async (username, id) => { 
   const token = {};
   const payload = {
-    expiresIn: '1m',
+    expiresIn: '30m',
     username, 
     id
   }
