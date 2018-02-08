@@ -55,7 +55,16 @@ const TicketEmailController = {
       console.log('error sending email');
       res.status(400).send(err);
     }
-  }
+  },
+  // getManagerEmails: () => {
+  //   SELECT u.email
+  // FROM users AS u,
+  //      users_properties_apt_units AS upa
+  // WHERE upa.property_id = ${propertyID}
+  // AND u.type = 1
+
+  // return daviddar232@gmail.com
+  // }
 }
 
 module.exports = TicketEmailController;
