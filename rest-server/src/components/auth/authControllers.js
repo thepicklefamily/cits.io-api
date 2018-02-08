@@ -14,7 +14,7 @@ export const signUpController = async (req, res) => {
     rows[0].token = token;
     return res
       .status(200)
-      .set('authorization', token)
+      .set('authorization', JSON.stringify(token))
       .set('Access-Control-Expose-Headers', 'authorization')
       .send(rows[0]);
   } catch (err) {
@@ -26,16 +26,14 @@ export const signUpController = async (req, res) => {
 export const loginController = async (req, res) => {
   try {
     const { rows } = await loginQuery(req.body);
-    console.log('this is rows', rows);
     delete rows[0].password;
     const { id, username } = rows[0];
     success('loginController - successfully retrieved data ', JSON.stringify(rows[0]));
     const token = await generateToken(id, username);
     rows[0].token = token;
-    console.log('this is server side login payload', rows[0]);
     return res
       .status(200)
-      .set('authorization', token)
+      .set('authorization', JSON.stringify(token))
       .set('Access-Control-Expose-Headers', 'authorization')
       .send(rows[0]);
   } catch (err) {
