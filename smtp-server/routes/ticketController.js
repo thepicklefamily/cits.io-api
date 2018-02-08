@@ -1,9 +1,10 @@
 require('dotenv').config();
 const PASS = process.env.PASS;
 const EMAIL = process.env.EMAIL
+const nodemailer = require('nodemailer');
 
 const TicketEmailController = {
-  sendTicketEmail: (req, res) => {
+  sendTicketEmail: async (req, res) => {
     const output = `
       <p>You have a new tenant ticket.</p>
       <h3>Ticket Details</h3>
@@ -15,19 +16,19 @@ const TicketEmailController = {
       <a href="http://localhost:3000">CHANGE TO ticket link</a>
     `;
     let transporter = nodemailer.createTransport({
-      host: 'smtp.ethereal.email',
-      port: 587,
-      service: 'gmail',
-      secure: false, // true for 465, false for other ports
+      service: 'Gmail',
       auth: {
         user: EMAIL, // generated ethereal user
         pass: PASS  // generated ethereal password
+      },
+      tls: {
+        rejectUnauthorized: false
       }
     });
 
     // setup email data with unicode symbols
     let mailOptions = {
-      from: '"Castle in the Sky Ticket Info" <whatever is in auth.user>', // sender address
+      from: `"Castle in the Sky Ticket Info" <${EMAIL}>`, // sender address
       to: 'daviddar232@gmail.com', // list of receivers
       subject: 'New Tenant Ticket', // Subject line
       text: 'Hello world?', // plain text body
@@ -35,15 +36,19 @@ const TicketEmailController = {
     };
 
     // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        return console.log(error);
-      }
-      console.log('Message sent: %s', info.messageId);
-      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-    });
-    console.log('sending ticket!');
-    res.status(200).send('sup?');
+    try {
+      await transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          return console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+      });
+      res.status(200).send('sup?');
+    } catch (err) {
+      console.log('error sending email');
+      res.status(400).send(err);
+    }
   }
 }
 

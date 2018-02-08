@@ -17,3 +17,5 @@ app.use('/tickets', router);
 app.listen(PORT, () => {
   console.log(`smtp listening on PORT ${PORT}`);
 })
+
+// endpoint for emailticket is 'http://localhost:8080/tickets/sendTicketEmail'

@@ -22,6 +22,11 @@ const envBuild = {
     'HOST=http://localhost',
     'PORT=4155',
     'REST_SERVER_URL=http://localhost:3396'
+  ],
+  'smtp-server': [
+    'PORT=8080',
+    'PASS=fakeaccount',
+    'EMAIL=castleintheskyhr@gmail.com'
   ]
 };
 
