@@ -6,8 +6,8 @@ import { editTicketController, deleteTicketController } from './userTicketContro
 const router = express.Router();
 
 router.route('/edit')
-  .put(validate(formValidation.addTicket), editTicketController);
-  router.route('/delete/:ticket_id')
+  .put(validate(formValidation.editTicket), editTicketController);
+router.route('/delete/:ticket_id')
   .delete(deleteTicketController);
 
   export default router;

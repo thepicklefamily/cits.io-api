@@ -11,11 +11,12 @@ import propTicketRouter from '../components/propTicket/propTicketRouter';
 import userTicketRouter from '../components/userTicket/userTicketRouter';
 import usersPropertiesAptUnitsRouter from '../components/usersPropertiesAptUnits/usersPropertiesAptUnitsRouter';
 import aptUnitsRouter from '../components/aptUnits/aptUnitsRouter';
+import userRouter from '../components/user/userRouter';
 
 const router = express.Router();
 
 router.use('/auth', authRouter);
-// router.use('/users', userRouter);
+router.use('/users', userRouter);
 // router.use('/posts', postRouter);
 router.use('/articles', articleRouter);
 router.use('/phonebooks', phonebookRouter);
