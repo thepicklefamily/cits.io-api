@@ -107,8 +107,8 @@ export default {
       description: Joi.string().required(),
       photo_url: Joi.string().required(),
       status: Joi.string().required(),
-      userId: Joi.number().integer().required(),
-      propertyId: Joi.number().integer().required(),
+      userid: Joi.number().integer().required(),
+      propertyid: Joi.number().integer().required(),
       id: Joi.number().integer().required()
     }
   }
