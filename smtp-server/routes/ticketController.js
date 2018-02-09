@@ -5,7 +5,11 @@ const nodemailer = require('nodemailer');
 
 const TicketEmailController = {
   sendTicketEmail: async (req, res) => { 
-    await console.log('reqbody in sneteicket', req.body); //this function emails the tenant ticket to the manager.
+    await console.log('reqbody in sneteicket', req.body);
+    let managerEmails = [];
+    for (let i = 0; i < req.body.managerEmails.length; i++) {
+      managerEmails.push(req.body.managerEmails[i].email);
+    } //this function emails the tenant ticket to the manager.
     const output = `
       <p>You have a new tenant ticket.</p>
       <h3>Ticket Details</h3>
@@ -31,11 +35,11 @@ const TicketEmailController = {
         rejectUnauthorized: false
       }
     });
-
+    
     // setup email data with unicode symbols
     let mailOptions = {
       from: `"Castle in the Sky Ticket Info" <${EMAIL}>`, // sender address
-      to: 'daviddar232@gmail.com', // list of receivers
+      to: managerEmails, // list of receivers
       subject: 'New Tenant Ticket', // Subject line
       text: 'Hello world?', // plain text body
       html: output // html body
@@ -56,15 +60,6 @@ const TicketEmailController = {
       res.status(400).send(err);
     }
   },
-  // getManagerEmails: () => {
-  //   SELECT u.email
-  // FROM users AS u,
-  //      users_properties_apt_units AS upa
-  // WHERE upa.property_id = ${propertyID}
-  // AND u.type = 1
-
-  // return daviddar232@gmail.com
-  // }
 }
 
 module.exports = TicketEmailController;
