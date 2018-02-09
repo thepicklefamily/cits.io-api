@@ -6,7 +6,7 @@ mongoose.connect('mongodb://localhost/messages');
 const messageSchema = new Schema({
   message: String,
   username: String,
-  email: String,
+  userId: Number,
   roomname: String,
   type: String,
   date: { type: Date, default: Date.now }
