@@ -20,14 +20,13 @@ export const deletePostHelper = ({ post_id }) => {
   return `DELETE FROM posts WHERE id = ${post_id}`;
 };
 
-//fetchpost should return a tree of posts;
 export const fetchPostsHelper = ({ article_id }) => {
   // return  `SELECT * FROM posts`;
   return `
     WITH RECURSIVE posts_with_depths AS (
       SELECT *, 0 AS depth
       FROM posts
-      WHERE parentId IS NULL
+      WHERE parentId IS NULL AND articleId = ${article_id}
   
     UNION ALL
   
