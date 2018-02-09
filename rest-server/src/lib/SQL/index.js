@@ -156,9 +156,9 @@ export const createArticleTable = async () => {
         CONSTRAINT articles_pk
           PRIMARY KEY(id),
         CONSTRAINT fk_articles_propertyId
-          FOREIGN KEY(propertyId) REFERENCES properties(id),
+          FOREIGN KEY(propertyId) REFERENCES properties(id) ON DELETE CASCADE,
         CONSTRAINT fk_articles_userId
-          FOREIGN KEY(userId) REFERENCES users(id)
+          FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE
       )
       `
     );
@@ -310,9 +310,9 @@ export const createPostTable = async () => {
         CONSTRAINT posts_pk
           PRIMARY KEY(id),
         CONSTRAINT fk_posts_articleId
-          FOREIGN KEY(articleId) REFERENCES articles(id),
+          FOREIGN KEY(articleId) REFERENCES articles(id) ON DELETE CASCADE,
         CONSTRAINT fk_posts_parentId
-          FOREIGN KEY(parentId) REFERENCES posts(id)
+          FOREIGN KEY(parentId) REFERENCES posts(id) ON DELETE CASCADE
       )
       `
     )
