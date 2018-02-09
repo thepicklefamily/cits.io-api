@@ -4,16 +4,27 @@ const EMAIL = process.env.EMAIL
 const nodemailer = require('nodemailer');
 
 const TicketEmailController = {
-  sendTicketEmail: async (req, res) => {  //this function emails the tenant ticket to the manager.
+  sendTicketEmail: async (req, res) => { 
+    await console.log('reqbody in sent ticket', req.body);
+    let managerEmails = [];
+    for (let i = 0; i < req.body.managerEmails.length; i++) {
+      managerEmails.push(req.body.managerEmails[i].email);
+    } //this function emails the tenant ticket to the manager.
     const output = `
       <p>You have a new tenant ticket.</p>
-      <h3>Ticket Details</h3>
+      <h3>Ticket Details:</h3>
       <ul>
-        <li>Name: CHANGE TO req.body.name</li>
-        <li>Email: CHANGE TO req.body.email</li>
-        <li>Phone: CHANGE TO req.body.phone</li>
+        <li>Name: ${req.body.name}</li>
+        <li>Email: ${req.body.email}</li>
+        <li>Phone: ${req.body.phone}</li>
+        <li>Apt#: ${req.body.apt_num}</li>
+        <li>Subject: ${req.body.subject}</li>
+        <li>Category: ${req.body.category}</li>
+        <li>Date: ${req.body.date}</li>
       </ul>
-      <a href="http://localhost:3000">CHANGE TO ticket link</a>
+      <h3>Description:</h3>
+      <p>${req.body.description}</p>
+      <a href="http://localhost:3000/tickets">View Tickets</a>
     `;
     let transporter = nodemailer.createTransport({
       service: 'Gmail',
@@ -25,11 +36,12 @@ const TicketEmailController = {
         rejectUnauthorized: false
       }
     });
-
+    
     // setup email data with unicode symbols
     let mailOptions = {
-      from: `"Castle in the Sky Ticket Info" <${EMAIL}>`, // sender address
-      to: 'daviddar232@gmail.com', // list of receivers
+      from: `"Castle in the Sky Ticket Info" <${EMAIL}>`,
+      to: 'dontreply@cits.com', // sender address
+      cc: managerEmails, // list of receivers
       subject: 'New Tenant Ticket', // Subject line
       text: 'Hello world?', // plain text body
       html: output // html body
@@ -44,12 +56,12 @@ const TicketEmailController = {
         console.log('Message sent: %s', info.messageId);
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
       });
-      res.status(200).send('sup?');
+      res.status(200).send('successfully sent ticket');
     } catch (err) {
       console.log('error sending email');
       res.status(400).send(err);
     }
-  }
+  },
 }
 
 module.exports = TicketEmailController;

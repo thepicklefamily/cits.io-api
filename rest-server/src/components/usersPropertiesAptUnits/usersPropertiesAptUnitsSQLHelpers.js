@@ -42,3 +42,12 @@ export const getUsersPropertiesAptUnitsHelper = ({ userID }) => {
       AND upa.apt_unit_id = au.id
   `;
 };
+
+export const getManagerEmailsByPropertyHelper = ({ propertyID }) => {
+  return `SELECT DISTINCT u.email
+    FROM users AS u,
+        users_properties_apt_units AS upa
+    WHERE u.type = 1
+    AND upa.property_id = ${propertyID}
+  `;
+}
