@@ -5,14 +5,14 @@ const nodemailer = require('nodemailer');
 
 const TicketEmailController = {
   sendTicketEmail: async (req, res) => { 
-    await console.log('reqbody in sneteicket', req.body);
+    await console.log('reqbody in sent ticket', req.body);
     let managerEmails = [];
     for (let i = 0; i < req.body.managerEmails.length; i++) {
       managerEmails.push(req.body.managerEmails[i].email);
     } //this function emails the tenant ticket to the manager.
     const output = `
       <p>You have a new tenant ticket.</p>
-      <h3>Ticket Details</h3>
+      <h3>Ticket Details:</h3>
       <ul>
         <li>Name: ${req.body.name}</li>
         <li>Email: ${req.body.email}</li>
@@ -22,8 +22,9 @@ const TicketEmailController = {
         <li>Category: ${req.body.category}</li>
         <li>Date: ${req.body.date}</li>
       </ul>
+      <h3>Description:</h3>
       <p>${req.body.description}</p>
-      <a href="http://localhost:3000/tickets">CHANGE TO ticket link</a>
+      <a href="http://localhost:3000/tickets">View Tickets</a>
     `;
     let transporter = nodemailer.createTransport({
       service: 'Gmail',
@@ -38,8 +39,9 @@ const TicketEmailController = {
     
     // setup email data with unicode symbols
     let mailOptions = {
-      from: `"Castle in the Sky Ticket Info" <${EMAIL}>`, // sender address
-      to: managerEmails, // list of receivers
+      from: `"Castle in the Sky Ticket Info" <${EMAIL}>`,
+      to: 'dontreply@cits.com', // sender address
+      cc: managerEmails, // list of receivers
       subject: 'New Tenant Ticket', // Subject line
       text: 'Hello world?', // plain text body
       html: output // html body
