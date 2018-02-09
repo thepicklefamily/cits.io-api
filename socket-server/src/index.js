@@ -7,7 +7,7 @@ const { Messages } = require('../config/mongo');
 const rooms = new Rooms(io);
 const clientEvents = require('./clientEvents');
 const PORT = process.env.PORT || 4155;
-
+const redisDB = require('../config/redis');
 
 io.on('connection', (socket) => {
   console.log('user connected');
