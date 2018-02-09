@@ -4,7 +4,7 @@ import passport from 'passport';
 
 import { addPropertyPhonebookController, fetchPropertyPhonebookController, updatePropertyPhonebookController, deletePropertyPhonebookController } from './phonebookControllers';
 import formValidation from '../../middleware/validation/request-validation';
-import '../../middleware/validation/passport';
+import '../../middleware/auth/jwt.js';
 
 const router = express.Router();
 
