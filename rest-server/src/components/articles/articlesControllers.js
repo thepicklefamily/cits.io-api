@@ -9,7 +9,6 @@ import { success, error } from '../../lib/log';
 
 export const addArticleController = async (req, res) => {
   try {
-    console.log(req.body)
     const { rows } = await addArticleQuery(req.body);
     const { id, title, content, date, photo_url, userId, propertyId } = rows[0]
     success('addArticleController - successfully added article', JSON.stringify(rows[0]));

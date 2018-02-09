@@ -111,6 +111,22 @@ export default {
       propertyid: Joi.number().integer().required(),
       id: Joi.number().integer().required()
     }
+  },
+  
+  addPost: {
+    body: {
+      username: Joi.string().required(),
+      text: Joi.string().required(),
+      date: Joi.string().required(),
+      parent_id: Joi.required(),
+      article_id: Joi.number().integer().required(),
+    }
+  },
+
+  updatePost: {
+    body: {
+      text: Joi.string().required(),
+    }
   }
 
 };

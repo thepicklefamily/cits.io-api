@@ -159,9 +159,9 @@ export const createArticleTable = async () => {
         CONSTRAINT articles_pk
           PRIMARY KEY(id),
         CONSTRAINT fk_articles_propertyId
-          FOREIGN KEY(propertyId) REFERENCES properties(id),
+          FOREIGN KEY(propertyId) REFERENCES properties(id) ON DELETE CASCADE,
         CONSTRAINT fk_articles_userId
-          FOREIGN KEY(userId) REFERENCES users(id)
+          FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE
       )
       `
     );
@@ -297,3 +297,41 @@ export const dropAptUnitsTable = async () => {
     error('error dropping apt_units table ', err);
   }
 };
+
+export const createPostTable = async () => {
+  try {
+    await db.queryAsync(
+      `
+      CREATE TABLE IF NOT EXISTS posts
+      (
+        id SERIAL,
+        username VARCHAR(255) NOT NULL,
+        text VARCHAR(255) NOT NULL,
+        date VARCHAR(255) NOT NULL,
+        parentId INT DEFAULT NULL,
+        articleId INT NOT NULL,
+        CONSTRAINT posts_pk
+          PRIMARY KEY(id),
+        CONSTRAINT fk_posts_articleId
+          FOREIGN KEY(articleId) REFERENCES articles(id) ON DELETE CASCADE,
+        CONSTRAINT fk_posts_parentId
+          FOREIGN KEY(parentId) REFERENCES posts(id) ON DELETE CASCADE
+      )
+      `
+    )
+    success('successfully created posts table');
+  } catch (err) {
+    error('error creating posts table ', err);
+  }
+};
+
+export const dropPostTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS posts`
+    );
+    success('successfully dropped posts table');
+  } catch (err) {
+    error('error dropping posts table ', err);
+  }
+}
