@@ -7,6 +7,7 @@ mongoose.connect('mongodb://localhost/socketdb');
 const messageSchema = new Schema({
   message: String,
   username: String,
+  email: String,
   roomname: String,
   type: String,
   date: { type: Date, default: Date.now }
