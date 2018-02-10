@@ -1,10 +1,7 @@
 require('dotenv').config();
 
 import db from '../../config/database';
-import {
-  success,
-  error
-} from '../log';
+import { success, error } from '../log';
 
 const database = process.env.NODE_ENV === 'production' ? process.env.AWS_DATABASE : process.env.LOCAL_DATABASE;
 
