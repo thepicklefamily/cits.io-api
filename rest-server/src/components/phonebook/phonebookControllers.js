@@ -10,6 +10,7 @@ export const addPropertyPhonebookController = async (req, res) => {
     return res.status(200).send(rows[0]);
   } catch (err) {
     error('addPropertyPhonebookController - error= ', err);
+    return res.status(400).send(err); 
   }
 };
 
@@ -21,6 +22,7 @@ export const fetchPropertyPhonebookController = async (req, res) => {
     return res.status(200).send(rows);
   } catch (err) {
     error('fetchPropertyPhonebookController - error= ', err);
+    return res.status(400).send(err); 
   }
 };
 
@@ -31,6 +33,7 @@ export const updatePropertyPhonebookController = async (req, res) => {
     return res.status(200).send(rows);
   } catch (err) {
     error('updatePropertyPhonebookController - error= ', err);
+    return res.status(400).send(err); 
   }
 };
 
@@ -41,6 +44,7 @@ export const deletePropertyPhonebookController = async (req, res) => {
     return res.status(200).send();
   } catch (err) {
     error('deletePropertyPhonebookController - error= ', err);
+    return res.status(400).send(err); 
   }
 };
 

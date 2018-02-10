@@ -15,6 +15,7 @@ export const addArticleController = async (req, res) => {
     return res.status(200).send(rows[0]);
   } catch (err) {
     error('addArticleController - error= ', err);
+    return res.status(400).send(err); 
   }
 }
 
@@ -26,6 +27,7 @@ export const editArticleController = async (req, res) => {
     return res.status(200).send(rows[0]);
   } catch (err) {
     error('editArticleController - error= ', err);
+    return res.status(400).send(err); 
   }
 }
 
@@ -36,6 +38,7 @@ export const deleteArticleController = async (req, res) => {
     return res.status(200).send(data);
   } catch (err) {
     error('deleteArticleController - error= ', err);
+    return res.status(400).send(err); 
   }
 }
 
@@ -46,5 +49,6 @@ export const fetchAllArticlesController = async (req, res) => {
     return res.status(200).send(rows);
   } catch (err) {
     error('fetchAllArticlesController - error= ', err);
+    return res.status(400).send(err); 
   }
 }

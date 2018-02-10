@@ -10,6 +10,7 @@ export const addMessage = async (req, res) => {
     return res.status(200).send(data);
   } catch (err) {
     error('addMessage Controller error ', err);
+    return res.status(400).send(err); 
   }
 }
 export const getMessages = async (req, res) => {
@@ -20,6 +21,7 @@ export const getMessages = async (req, res) => {
     return res.status(200).send(data);
   } catch (err) {
     error('get messages error ', err);
+    return res.status(400).send(err); 
   }
 }
 export const getMostRecentMessage = async (req, res) => {
@@ -30,5 +32,6 @@ export const getMostRecentMessage = async (req, res) => {
     return res.status(200).send(data);
   } catch (err) {
     error('recent message retrieval error ', err);
+    return res.status(400).send(err); 
   }
 }
