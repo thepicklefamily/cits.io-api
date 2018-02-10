@@ -20,7 +20,7 @@ router
   .put(validate(formValidation.editArticle), editArticleController);
 
 router
-  .route('/deleteArticle/:article_id/:property_id')
+  .route('/deleteArticle/:article_id')
   .delete(deleteArticleController);
 
 router
