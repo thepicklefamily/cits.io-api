@@ -8,7 +8,7 @@ const rooms = new Rooms(io);
 const clientEvents = require('./clientEvents');
 const PORT = process.env.PORT || 4155;
 const redisDB = require('../config/redis');
-import notificationEmitters from './chatNotifications/index.js';
+import chatNotificationsControllers from './chatNotifications/chatNotificationsControllers.js';
 
 
 
@@ -19,13 +19,14 @@ const chatNotificationSocket = io.of('/chat-notifications');
 chatNotificationSocket.on('connection', function(socket){
   console.log('a user connected to chat-notifications socket');
 
-  chatNotificationSocket.emit('initial.notifications', 'everyone!');
+  chatNotificationSocket.emit('initial.notifications', 'hello from the server!');
 
   socket.on('notifications.ready', (data) => {
     console.log('received user id', data);
-    // look up the appropriate notifs and then send back an array of prop ids to have notifs on.
+    // have a helper func look up the appropriate notifications
+    //then send back an array of prop ids to have notifs on.
     let arrayOfPropsforNotifs = [1, 2, 3, 4];
-    io.emit('initial-notifications', arrayOfPropsforNotifs)  
+    chatNotificationSocket.emit('initial.notifications', arrayOfPropsforNotifs)  
   });
 
   socket.on('disconnect', () => {
