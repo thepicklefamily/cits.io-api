@@ -1,6 +1,8 @@
 import { db } from "../../config/database";
 import { addPostQuery, updatePostQuery, deletePostQuery, fetchPostsQuery } from "./postQueries";
 import { success, error } from "../../lib/log";
+import { sortTree, postTree } from './postHelpers/postHelpers';
+
 
 export const addPostController = async (req, res) => {
   try {
@@ -38,7 +40,7 @@ export const fetchPostsController = async (req, res) => {
   try {
     const { rows } = await fetchPostsQuery(req.params);
     success('fetchPostsController - successfully fetched posts', JSON.stringify(rows));
-    return res.status(200).send(rows);
+    return res.status(200).send(sortTree(postTree(rows)));
   } catch (err) {
     error('fetchPostsController - error= ', err);
   }
