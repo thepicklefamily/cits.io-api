@@ -18,11 +18,12 @@ import {
 } from '../../lib/SQL';
 
 const setup = async () => {
+  // be wary of the order which the tables are dropping
   await dropDatabase();
   await dropUsersPropertiesAptUnitsTable();
   await dropArticleTable();
   await dropTicketTable();
-  await dropPhonebookTable(); // be wary of the order which the tables are dropping
+  await dropPhonebookTable(); 
   await dropAptUnitsTable();
   await dropPropertyTable();
   await dropUserTable();

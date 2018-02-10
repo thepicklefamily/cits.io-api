@@ -1,7 +1,6 @@
 import db from '../../config/database';
 import { addPropertyPhonebookQuery, fetchPropertyPhonebookQuery, updatePropertyPhonebookQuery, deletePropertyPhonebookQuery } from './phonebookQueries';
 import { success, error } from '../../lib/log';
-import { generateToken } from '../../middleware/auth/jwt';
 
 export const addPropertyPhonebookController = async (req, res) => {
   try {

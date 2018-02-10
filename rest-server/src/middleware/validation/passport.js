@@ -1,6 +1,5 @@
 import passport from 'passport';
 import local from 'passport-local';
-// import jwt from 'passport-jwt';
 
 import {
   loginQuery
@@ -10,15 +9,9 @@ import {
   comparePasswords
 } from '../auth/bcrypt';
 const LocalStrategy = local.Strategy;
-// const JwtStrategy = jwt.Strategy;
-// const ExtractJwt = jwt.ExtractJwt;
 
 const localOptions = {};
 
-// const jwtOptions = {
-//   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-//   secretOrKey: process.env.TOKEN_SECRET
-// };
 
 passport.use(new LocalStrategy(localOptions, async (username, password, done) => {
   try {
