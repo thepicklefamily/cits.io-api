@@ -8,21 +8,8 @@ export const addUsersPropertiesAptUnitsHelper = ({ userID, propertyID, aptUnitID
 
 // export const getUsersPropertiesAptUnitsHelper = ({ userID }) => {
 //   return `
-//     SELECT id, name, address, secret_key
-//     FROM properties AS p
-//       INNER JOIN users_properties_apt_units AS up
-//       ON (p.id = up.property_id)
-//       WHERE up.user_id = ${userID}
-//   `;
-// };
-
-// export const getUsersPropertiesAptUnitsHelper = ({ userID }) => {
-//   return `
 //     SELECT p.id, p.name, p.address, p.secret_key, au.unit
-//       FROM users, 
-//            properties, 
-//            apt_units, 
-//            users_properties_apt_units AS upa
+//       FROM users_properties_apt_units AS upa
 //       INNER JOIN properties AS p
 //         ON (p.id = upa.property_id)
 //       INNER JOIN apt_units AS au
@@ -51,3 +38,12 @@ export const getManagerEmailsByPropertyHelper = ({ propertyID }) => {
     AND upa.property_id = ${propertyID}
   `;
 }
+
+export const editUsersPropertiesAptUnitsHelper = ({ userID, propertyID, unitID }) => {
+  return `
+    UPDATE users_properties_apt_units
+      SET apt_unit_id = ${unitID}
+    WHERE user_id = ${userID}
+    AND property_id = ${propertyID}
+  `;
+};

@@ -2,7 +2,8 @@ import db from '../../config/database';
 import { 
   addUsersPropertiesAptUnitsHelper, 
   getUsersPropertiesAptUnitsHelper,
-  getManagerEmailsByPropertyHelper 
+  getManagerEmailsByPropertyHelper,
+  editUsersPropertiesAptUnitsHelper
 } from "./usersPropertiesAptUnitsSQLHelpers";
 import { success, error } from "../../lib/log";
 
@@ -16,6 +17,7 @@ export const addUsersPropertiesAptUnitsQuery = async body => {
     error('addUsersPropertiesAptUnitsQuery - error= ', err);
   }
 };
+
 export const getUsersPropertiesAptUnitsQuery = async body => {
   try {
     const queryString = getUsersPropertiesAptUnitsHelper(body);
@@ -35,5 +37,16 @@ export const getUsersPropertiesManagersQuery = async body => {
     return data;
   } catch (err) {
     error('getUsersPropertiesManagersQuery - error= ', err);
+  }
+};
+
+export const editUsersPropertiesAptUnitsQuery = async body => {
+  try {
+    const queryString = editUsersPropertiesAptUnitsHelper(body);
+    const data = await db.queryAsync(queryString);
+    success('editUsersPropertiesAptUnitsQuery - successfully retrieved data ', JSON.stringify(data));
+    return data;
+  } catch (err) {
+    error('editUsersPropertiesAptUnitsQuery - error= ', err);
   }
 };

@@ -1,7 +1,8 @@
 import { 
   addUsersPropertiesAptUnitsQuery, 
   getUsersPropertiesAptUnitsQuery,
-  getUsersPropertiesManagersQuery 
+  getUsersPropertiesManagersQuery,
+  editUsersPropertiesAptUnitsQuery
 } from './usersPropertiesAptUnitsQueries';
 import { success, error } from '../../lib/log';
 
@@ -42,3 +43,13 @@ export const getUsersPropertiesManagersController = async (req, res) => {
   }
 }
 
+export const editUsersPropertiesAptUnitsController = async (req, res) => {
+  try {
+    const { rows } = await editUsersPropertiesAptUnitsQuery(req.body);
+    success('editUsersPropertiesAptUnits controller success ', JSON.stringify(rows));
+    return res.status(200).send(rows);
+  } catch (err) {
+    error('editUsersPropertiesAptUnits controller error ', err);
+    return res.status(400).send(err);
+  }
+}
