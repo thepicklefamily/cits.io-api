@@ -2,7 +2,7 @@ import express from 'express';
 import validate from 'express-validation';
 
 import formValidation from '../../middleware/validation/request-validation';
-import { addPropertyController, getPropertyByNameController, getPropertyByIDController } from './propertyControllers';
+import { addPropertyController, getPropertyByNameController, getPropertyByIDController, editPropertyController, editSecretController } from './propertyControllers';
 
 const router = express.Router();
 
@@ -26,5 +26,13 @@ router
     validate(formValidation.getPropertyByID),
     getPropertyByIDController
   );
+
+router
+  .route('/editProperty')
+  .put(editPropertyController)
+
+router
+  .route('/editSecret')
+  .put(editSecretController)
 
 export default router;
