@@ -12,6 +12,7 @@ export const addPostController = async (req, res) => {
     return res.status(200).send(rows[0]);
   } catch (err) {
     error('addPostController - error= ', err);
+    return res.status(400).send(err); 
   }
 };
 
@@ -23,6 +24,7 @@ export const updatePostController = async (req, res) => {
     return res.status(200).send(rows[0]);
   } catch (err) {
     error('updatePostController - error= ', err);
+    return res.status(400).send(err); 
   }
 }
 
@@ -33,6 +35,7 @@ export const deletePostController = async (req, res) => {
   return res.status(200).send(data);
   } catch (err) {
     error('deletePostController - error= ', err);
+    return res.status(400).send(err); 
   }
 }
 
@@ -43,5 +46,6 @@ export const fetchPostsController = async (req, res) => {
     return res.status(200).send(sortTree(postTree(rows)));
   } catch (err) {
     error('fetchPostsController - error= ', err);
+    return res.status(400).send(err); 
   }
 }

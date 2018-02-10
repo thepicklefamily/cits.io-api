@@ -13,6 +13,7 @@ export const addPropertyController = async (req, res) => {
       .send(rows[0]);
   } catch (err) {
     error('addPropertyController - error= ', err);
+    return res.status(400).send(err); 
   }
 };
 
@@ -25,6 +26,7 @@ export const getPropertyByNameController = async (req, res) => {
       .send(rows);
   } catch (err) {
     error('getPropertyByNameController - error= ', err);
+    return res.status(400).send(err); 
   }
 };
 
@@ -38,6 +40,7 @@ export const getPropertyByIDController = async (req, res) => {
       .send(rows);
   } catch (err) {
     error('getPropertyByIDController - error= ', err);
+    return res.status(400).send(err); 
   }
 };
 
@@ -50,6 +53,7 @@ export const editPropertyController = async (req, res) => {
       .send(rows[0]);
   } catch (err) {
     error('editPropertyController - error= ', err);
+    return res.status(400).send(err); 
   }
 };
 
@@ -73,5 +77,6 @@ export const editSecretController = async (req, res) => {
     }
   } catch (err) {
     error('editSecretController - error= ', err);
+    return res.status(400).send(err); 
   }
 };

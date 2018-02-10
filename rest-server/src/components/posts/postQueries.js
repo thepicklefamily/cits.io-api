@@ -11,7 +11,6 @@ export const addPostQuery = async body => {
     return data;
   } catch (err) {
     error('addPostQuery - error=', err);
-    throw new Error(err);
   }
 };
 
@@ -23,7 +22,6 @@ export const updatePostQuery = async body => {
     return data;
   } catch (err) {
     error('updatePostQuery - error=', err);
-    throw new Error(err);
   }
 };
 
@@ -35,7 +33,6 @@ export const deletePostQuery = async params => {
     return data;
   } catch (err) {
     error('deletePostQuery - error=', err);
-    throw new Error(err);
   }
 };
 
@@ -47,6 +44,5 @@ export const fetchPostsQuery = async params => {
     return data;
   } catch (err) {
     error('fetchPostsQuery - error=', err);
-    throw new Error(err);
   }
 }
