@@ -17,6 +17,18 @@ export const initialChatNotificationsController = async (socket) => {
  
 }
 
+export const addLastMessageTimeForPropToRedisController = (propId) => {
+
+
+}
+
+export const sendNewMessagePropIdToActiveUsersController = (propId) => {
+
+  
+  io.in('chat-notificatons').emit('notifications.whileonline', data);
+}
+
+
 
 //xx
 export const initialNotifications = (userId) => {
