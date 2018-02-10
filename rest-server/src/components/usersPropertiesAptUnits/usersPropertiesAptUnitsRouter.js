@@ -2,7 +2,8 @@ import express from 'express';
 import { 
   addUsersPropertiesAptUnitsController, 
   getUsersPropertiesAptUnitsController,
-  getUsersPropertiesManagersController
+  getUsersPropertiesManagersController,
+  editUsersPropertiesAptUnitsController
 } from './usersPropertiesAptUnitsController';
 
 const router = express.Router();
@@ -14,7 +15,13 @@ router
 router
   .route('/getUsersPropertiesAptUnits')
   .get(getUsersPropertiesAptUnitsController);
+
 router
   .route('/getUsersPropertiesManagers')
   .get(getUsersPropertiesManagersController);
+
+router
+  .route('/editUsersPropertiesAptUnits')
+  .put(editUsersPropertiesAptUnitsController);
+
 export default router;
