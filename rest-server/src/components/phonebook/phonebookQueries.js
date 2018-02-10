@@ -1,15 +1,7 @@
 import db from '../../config/database';
 
-import {
-  addPropertyPhonebookHelper,
-  fetchPropertyPhonebookHelper,
-  updatePropertyPhonebookHelper,
-  deletePropertyPhonebookHelper
-} from './phonebookSQLHelpers';
-import {
-  success,
-  error
-} from '../../lib/log';
+import { addPropertyPhonebookHelper, fetchPropertyPhonebookHelper, updatePropertyPhonebookHelper, deletePropertyPhonebookHelper } from './phonebookSQLHelpers';
+import { success, error } from '../../lib/log';
 
 export const addPropertyPhonebookQuery = async (body) => {
   try {
