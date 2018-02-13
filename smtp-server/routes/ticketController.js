@@ -2,6 +2,8 @@ require('dotenv').config();
 const PASS = process.env.PASS;
 const EMAIL = process.env.EMAIL
 const nodemailer = require('nodemailer');
+const { ticketEmail } = require('../emails');
+const { sendMail } = require('../sendMail');
 
 const TicketEmailController = {
   sendTicketEmail: async (req, res) => { 
@@ -9,34 +11,8 @@ const TicketEmailController = {
     let managerEmails = [];
     for (let i = 0; i < req.body.managerEmails.length; i++) {
       managerEmails.push(req.body.managerEmails[i].email);
-    } //this function emails the tenant ticket to the manager.
-    const output = `
-      <p>You have a new tenant ticket.</p>
-      <h3>Ticket Details:</h3>
-      <ul>
-        <li>Name: ${req.body.name}</li>
-        <li>Email: ${req.body.email}</li>
-        <li>Phone: ${req.body.phone}</li>
-        <li>Apt#: ${req.body.apt_num}</li>
-        <li>Subject: ${req.body.subject}</li>
-        <li>Category: ${req.body.category}</li>
-        <li>Date: ${req.body.date}</li>
-      </ul>
-      <h3>Description:</h3>
-      <p>${req.body.description}</p>
-      <a href="http://localhost:3000/tickets">View Tickets</a>
-    `;
-    let transporter = nodemailer.createTransport({
-      service: 'Gmail',
-      auth: {
-        user: EMAIL, // generated ethereal user
-        pass: PASS  // generated ethereal password
-      },
-      tls: {
-        rejectUnauthorized: false
-      }
-    });
-    
+    }
+    const output = await ticketEmail(req.body);  
     // setup email data with unicode symbols
     let mailOptions = {
       from: `"Castle in the Sky Ticket Info" <${EMAIL}>`,
@@ -46,21 +22,7 @@ const TicketEmailController = {
       text: 'Hello world?', // plain text body
       html: output // html body
     };
-
-    // send mail with defined transport object
-    try {
-      await transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return console.log(error);
-        }
-        console.log('Message sent: %s', info.messageId);
-        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-      });
-      res.status(200).send('successfully sent ticket');
-    } catch (err) {
-      console.log('error sending email');
-      res.status(400).send(err);
-    }
+    await sendMail(req, res, mailOptions);
   },
 }
 
