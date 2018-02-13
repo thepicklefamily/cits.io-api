@@ -38,3 +38,10 @@ export const editSecretHelper = ({ id, secret_key }) => {
     WHERE id='${id}'
   `;
 };
+
+export const deletePropertyHelper = ({ propertyID }) => {
+  return `
+    DELETE FROM properties
+    WHERE id = '${propertyID}'
+  `;
+};
