@@ -7,35 +7,45 @@ const { Messages } = require('../config/mongo');
 const rooms = new Rooms(io);
 const clientEvents = require('./clientEvents');
 const PORT = process.env.PORT || 4155;
-const redisDB = require('../config/redis');
-import chatNotificationsControllers from './chatNotifications/chatNotificationsControllers.js';
+import { addToLastOnlineDBController } from './chatNotifications/chatNotificationsControllers'; 
 
-
-
-//once get this all working, figure out how to modularize more and get into dif files, clean up extra junk, etc.
 
 //Chat Notifications Socket:
-const chatNotificationSocket = io.of('/chat-notifications');
+export const chatNotificationSocket = io.of('/chat-notifications');
 chatNotificationSocket.on('connection', function(socket){
   console.log('a user connected to chat-notifications socket');
 
   chatNotificationSocket.emit('initial.notifications', 'hello from the server!');
-
+  
   socket.on('notifications.ready', (data) => {
     console.log('received user id', data);
+    console.log('socket connection id', socket.id);
+    // initialChatNotificationsController(data.userId);
     // have a helper func look up the appropriate notifications
     //then send back an array of prop ids to have notifs on.
-    let arrayOfPropsforNotifs = [1, 2, 3, 4];
-    chatNotificationSocket.emit('initial.notifications', arrayOfPropsforNotifs)  
+    // let arrayOfPropsforNotifs = [1, 2, 3, 4];
+    // chatNotificationSocket.emit('initial.notifications', arrayOfPropsforNotifs)  
   });
 
-  socket.on('disconnect', () => {
+  //receive confirmation of user viewing a message
+  socket.on('message.received', (data) => {
+    addToLastOnlineDBController(data.userId, data.propId, data.timeStamp);
+  });
+
+
+  socket.on('send.lastonline', (data) => {
+    console.log('last onlineTimes data = ', data);
+    if (data.times) {
+      // addLastMessageTimeForPropToRedisController(data.userId, data.times);
+    }
+  });
+
+  socket.on('disconnect', (data) => {
     console.log('a user disconnected from chat-notifications socket');
+    console.log(socket.id);
   });
 });
 
-
-//david's stuff below:
 
 //Chat Messaging Socket:
 io.on('connection', (socket) => {

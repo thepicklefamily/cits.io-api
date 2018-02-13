@@ -1,49 +1,50 @@
-import { io } from '../index.js';
-import chatNotificationsHelper from './chatNotificationsHelper.js'; //will want to change this to just deconstruct n import the helper functions rather than whole page, but note that your cat/meow won't work anymore since not being imported
+// import { chatNotificationSocket } from '../index.js';
+
+import { addToLastMessageDBQuery, addToLastOnlineDBQuery } from './chatNotificationsQueries';
 
 
-
-export const initialChatNotificationsController = async (socket) => {
-  // console.log('da socket', socket);
-  console.log('looking up notifs');
-
-//this should do two things:
-//run the helper (that runs the queries)
-//emit to client
-  
-  const data = [1, 2, 3, 4]; //await somethingsomethingHelper
-  io.in('chat-notificatons').emit('initial-notifications', data);
-  // io.emit('initial-notifications', data)
- 
-}
-
-export const addLastMessageTimeForPropToRedisController = (propId) => {
-
-
-}
-
-export const sendNewMessagePropIdToActiveUsersController = (propId) => {
-
-  
-  io.in('chat-notificatons').emit('notifications.whileonline', data);
-}
-
-
-
-//xx
-export const initialNotifications = (userId) => {
-  // console.log('da socket', socket);
-  console.log('looking up notifs');
-  let result = [];
-
-  //mongo look up prop ids and last online in table based on userid. presumable will be an array of obj.
-  let mongoLookUpResult;
-
-  for (let i = 0; i < mongoLookUpResult.length; i++) {
-    if (redisGet(mongoLookUpResult[i].propId) > mongoLookUpResult[i].timeLastOnline) {
-      result.push(mongoLookUpResult[i].propId);
-    }
+//adds propId and timeStamp of last msg in chat room to the DB table
+//nothing is sent to client
+export const addToLastMessageDBController = async (propId, timeStamp) => {
+  try {
+    await addToLastMessageDBQuery(propId, timeStamp);
+    console.log('addToLastMessageDBController - success');
+  } catch (err) {
+    console.log('addToLastMessageDBController - error= ', err);
   }
-  
-  return result; //array of prop ids for notifications for the user
-}
+};
+
+//adds a user's userId, propId and timeStamp of last msg the user received in chat room to the DB table
+//nothing is sent to client
+export const addToLastOnlineDBController = async (userId, propId, timeStamp) => {
+  try {
+    await addToLastOnlineDBQuery(userId, propId, timeStamp);
+    console.log('addToLastOnlineDBController - success');
+  } catch (err) {
+    console.log('addToLastOnlineDBController - error= ', err);
+  }
+};
+
+
+
+
+
+
+
+
+// //sends a prop id to chat notif socket whenever any chat msg is sent in any prop chat room
+// export const sendNewMessagePropIdToActiveUsersController = (propId) => {
+//   // doesnt use a helper function since pretty basic
+//   console.log('in da func', propId)
+//   chatNotificationSocket.emit('notifications.whileonline', propId);
+// }
+
+// // sends an array of the user's prop's propIds for which notifications should be displayed
+// export const initialChatNotificationsController = async (userId) => {
+//   try {
+//     const data = await initialChatNotificationsHelper(userId);
+//     chatNotificationSocket.emit('initial.notifications', data);
+//   }  catch (err) {
+//     console.log('initialChatNotificationsController - error= ', err);
+//   } 
+// }

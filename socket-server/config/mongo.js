@@ -13,20 +13,31 @@ const messageSchema = new Schema({
   date: { type: Date, default: Date.now }
 });
 
-
 const Messages = mongoose.model('Messages', messageSchema);
 
 
-//Time last online in property chat room table:
-const lastOnlineSchema = new Schema({
-  userId: String,
-  propId: String,
-  timeLastOnline: String
+//Time last message was sent in property chat room table:
+const lastMessageSchema = new Schema({
+  propId: { type : String, unique : true, required : true },
+  timeLastMessage: { type : String, required : true }
 });
 
+export const lastMessage = mongoose.model('lastMessage', lastMessageSchema);
 
-const lastOnline = mongoose.model('lastOnline', lastOnlineSchema);
+
+
+//Time user was last online in property chat room table:
+const lastOnlineSchema = new Schema({
+  userId: { type : String, required : true },
+  propId: { type : String, required : true },
+  timeLastOnline: { type : String, required : true }
+});
+
+//experiment based on https://stackoverflow.com/questions/34742224/make-combination-of-two-fields-unique-in-my-collection?lq=1
+// to make user id and prop id combo have to be unique
+lastOnlineSchema.index({ userId: 1, propId: 1}, { "unique": true });
+
+export const lastOnline = mongoose.model('lastOnline', lastOnlineSchema);
 
 
 module.exports.Messages = Messages;
-module.exports.lastOnline = lastOnline;
