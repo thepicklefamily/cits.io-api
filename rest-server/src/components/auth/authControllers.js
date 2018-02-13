@@ -24,8 +24,10 @@ export const signUpController = async (req, res) => {
 };
 
 export const loginController = async (req, res) => {
+  console.log('login says hello');
   try {
     const { rows } = await loginQuery(req.body);
+    if (rows.length === 0) return res.status(500).send();
     delete rows[0].password;
     const { id, username } = rows[0];
     success('loginController - successfully retrieved data ', JSON.stringify(rows[0]));
@@ -37,8 +39,8 @@ export const loginController = async (req, res) => {
       .set('Access-Control-Expose-Headers', 'authorization')
       .send(rows[0]);
   } catch (err) {
-    error('loginController - error= ', err);
-    return res.status(400).send(err);
+    // error('loginController - error= ', err);
+    return res.status(204).send();
   }
 };
 

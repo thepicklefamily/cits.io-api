@@ -13,7 +13,6 @@ export const addAptUnitController = async (req, res) => {
       .send(rows[0]);
   } catch (err) {
     error('addAptUnitController - error= ', err);
-    return res.status(400).send(err); 
   }
 };
 
@@ -27,6 +26,5 @@ export const getAptUnitByIDController = async (req, res) => {
       .send(rows[0]);
   } catch (err) {
     error('getAptUnitByIDController - error= ', err);
-    return res.status(400).send(err); 
   }
 };

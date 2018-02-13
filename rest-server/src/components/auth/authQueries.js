@@ -19,6 +19,6 @@ export const loginQuery = async body => {
     success('loginQuery - successfully retrieved data ', JSON.stringify(data));
     return data;
   } catch (err) {
-    error('loginQuery - error= ', err);
+    // error('loginQuery - error= ', err);
   }
 };
