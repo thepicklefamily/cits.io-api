@@ -29,3 +29,28 @@ export const addToLastOnlineDBQuery = async (userId, propId, timeStamp) => {
     console.log('addToLastOnlineDBQuery - error= ', err);
   }
 };
+
+
+export const initialChatNotificationsLastOnlineQuery = async (userId, propId) => {
+  try {
+    // const { timeLastOnline } = await lastOnline.findOne({userId, propId}).select('timeLastOnline -_id');
+    const timeLastOnline = await lastOnline.findOne({userId, propId}).select('timeLastOnline -_id')
+    const timeStamp = timeLastOnline ? timeLastOnline.timeLastOnline : null;
+    await console.log('initialChatNotificationsLastOnlineQuery - successfully found timeStamp ', timeStamp);
+    return timeStamp;
+  } catch (err) {
+    console.log('addToLastOnlineDBQuery - error= ', err);
+  }
+};
+
+
+export const initialChatNotificationsLastMsgQuery = async (propId) => {
+  try {
+    const timeLastMessage = await lastMessage.findOne({propId}).select('timeLastMessage -_id');
+    const timeStamp = timeLastMessage ? timeLastMessage.timeLastMessage : null;
+    await console.log('initialChatNotificationsLastMsgQuery - successfully found timeStamp ', timeStamp);
+    return timeStamp;
+  } catch (err) {
+    console.log('addToLastOnlineDBQuery - error= ', err);
+  }
+};

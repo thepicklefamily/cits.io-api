@@ -33,8 +33,7 @@ const lastOnlineSchema = new Schema({
   timeLastOnline: { type : String, required : true }
 });
 
-//experiment based on https://stackoverflow.com/questions/34742224/make-combination-of-two-fields-unique-in-my-collection?lq=1
-// to make user id and prop id combo have to be unique
+// to make user id and prop id combo have to be unique:
 lastOnlineSchema.index({ userId: 1, propId: 1}, { "unique": true });
 
 export const lastOnline = mongoose.model('lastOnline', lastOnlineSchema);
