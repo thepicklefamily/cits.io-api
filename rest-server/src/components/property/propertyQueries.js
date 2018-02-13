@@ -1,7 +1,14 @@
 import db from '../../config/database';
 import { success, error } from '../../lib/log';
 
-import { addPropertyHelper, getPropertyByNameHelper, getPropertyByIDHelper, editPropertyHelper, editSecretHelper } from './propertySQLHelpers';
+import { 
+  addPropertyHelper, 
+  getPropertyByNameHelper, 
+  getPropertyByIDHelper, 
+  editPropertyHelper, 
+  editSecretHelper,
+  deletePropertyHelper
+} from './propertySQLHelpers';
 
 export const addPropertyQuery = async body => {
   try {
@@ -55,5 +62,16 @@ export const editSecretQuery = async body => {
     return data;
   } catch (err) {
     error('editSecretQuery - error= ', err);
+  }
+};
+
+export const deletePropertyQuery = async body => {
+  try {
+    const queryString = deletePropertyHelper(body);
+    const data = await db.queryAsync(queryString);
+    success('deletePropertyQuery - successfully fetched data ', JSON.stringify(data));
+    return data;
+  } catch (err) {
+    error('deletePropertyQuery - error= ', err);
   }
 };

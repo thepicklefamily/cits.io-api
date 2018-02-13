@@ -4,7 +4,8 @@ import {
   getUsersPropertiesAptUnitsHelper,
   getManagerEmailsByPropertyHelper,
   editUsersPropertiesAptUnitsHelper,
-  deleteUsersPropertiesAptUnitsHelper
+  deleteUsersPropertiesAptUnitsHelper,
+  deleteByPropertyIdHelper
 } from "./usersPropertiesAptUnitsSQLHelpers";
 import { success, error } from "../../lib/log";
 
@@ -60,5 +61,16 @@ export const deleteUsersPropertiesAptUnitsQuery = async body => {
     return data;
   } catch (err) {
     error('deleteUsersPropertiesAptUnitsQuery - error= ', err);
+  }
+};
+
+export const deleteByPropertyIdQuery = async body => {
+  try {
+    const queryString = deleteByPropertyIdHelper(body);
+    const data = await db.queryAsync(queryString);
+    success('deleteByPropertyIdQuery - successfully retrieved data ', JSON.stringify(data));
+    return data;
+  } catch (err) {
+    error('deleteByPropertyIdQuery - error= ', err);
   }
 };

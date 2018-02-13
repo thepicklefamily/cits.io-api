@@ -4,7 +4,8 @@ import {
   getUsersPropertiesAptUnitsController,
   getUsersPropertiesManagersController,
   editUsersPropertiesAptUnitsController,
-  deleteUsersPropertiesAptUnitsController
+  deleteUsersPropertiesAptUnitsController,
+  deleteByPropertyIdContoller
 } from './usersPropertiesAptUnitsController';
 
 const router = express.Router();
@@ -28,5 +29,9 @@ router
 router
   .route('/deleteUsersPropertiesAptUnits')
   .delete(deleteUsersPropertiesAptUnitsController);
+
+router
+  .route('/deleteByPropertyId')
+  .delete(deleteByPropertyIdContoller);
 
 export default router;

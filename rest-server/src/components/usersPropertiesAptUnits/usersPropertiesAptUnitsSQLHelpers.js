@@ -55,3 +55,10 @@ export const deleteUsersPropertiesAptUnitsHelper = ({ userID, propertyID }) => {
     AND property_id = ${propertyID}
   `;
 };
+
+export const deleteByPropertyIdHelper = ({ propertyID }) => {
+  return `
+    DELETE FROM users_properties_apt_units
+    WHERE property_id = ${propertyID}
+  `;
+};
