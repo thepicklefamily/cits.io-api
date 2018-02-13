@@ -26,7 +26,7 @@ router
   .put(editUsersPropertiesAptUnitsController);
 
 router
-  .route('deleteUsersPropertiesAptUnits')
+  .route('/deleteUsersPropertiesAptUnits')
   .delete(deleteUsersPropertiesAptUnitsController);
 
 export default router;
