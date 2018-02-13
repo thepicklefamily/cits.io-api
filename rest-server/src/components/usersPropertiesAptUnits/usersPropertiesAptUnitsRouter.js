@@ -3,7 +3,9 @@ import {
   addUsersPropertiesAptUnitsController, 
   getUsersPropertiesAptUnitsController,
   getUsersPropertiesManagersController,
-  editUsersPropertiesAptUnitsController
+  editUsersPropertiesAptUnitsController,
+  deleteUsersPropertiesAptUnitsController,
+  deleteByPropertyIdContoller
 } from './usersPropertiesAptUnitsController';
 
 const router = express.Router();
@@ -23,5 +25,13 @@ router
 router
   .route('/editUsersPropertiesAptUnits')
   .put(editUsersPropertiesAptUnitsController);
+
+router
+  .route('/deleteUsersPropertiesAptUnits')
+  .delete(deleteUsersPropertiesAptUnitsController);
+
+router
+  .route('/deleteByPropertyId')
+  .delete(deleteByPropertyIdContoller);
 
 export default router;

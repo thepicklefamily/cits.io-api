@@ -47,3 +47,18 @@ export const editUsersPropertiesAptUnitsHelper = ({ userID, propertyID, unitID }
     AND property_id = ${propertyID}
   `;
 };
+
+export const deleteUsersPropertiesAptUnitsHelper = ({ userID, propertyID }) => {
+  return `
+    DELETE FROM users_properties_apt_units
+    WHERE user_id = ${userID}
+    AND property_id = ${propertyID}
+  `;
+};
+
+export const deleteByPropertyIdHelper = ({ propertyID }) => {
+  return `
+    DELETE FROM users_properties_apt_units
+    WHERE property_id = ${propertyID}
+  `;
+};
