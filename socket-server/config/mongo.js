@@ -13,9 +13,7 @@ const messageSchema = new Schema({
   date: { type: Date, default: Date.now }
 });
 
-const Messages = mongoose.model('Messages', messageSchema);
-
-module.exports.Messages = Messages;
+export const Messages = mongoose.model('Messages', messageSchema);
 
 //Time last message was sent in property chat room table:
 const lastMessageSchema = new Schema({

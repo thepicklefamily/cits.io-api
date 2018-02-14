@@ -12,6 +12,6 @@ const Rooms = class Rooms {
     }
     return room;
   }
-}
+};
 
-module.exports = Rooms;
+export default Rooms;
