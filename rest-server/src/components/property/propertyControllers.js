@@ -1,7 +1,14 @@
 import db from '../../config/database';
 import { success, error } from '../../lib/log';
 import { comparePasswords } from '../../middleware/auth/bcrypt';
-import { addPropertyQuery, getPropertyByNameQuery, getPropertyByIDQuery, editPropertyQuery, editSecretQuery } from './propertyQueries';
+import { 
+  addPropertyQuery, 
+  getPropertyByNameQuery, 
+  getPropertyByIDQuery, 
+  editPropertyQuery, 
+  editSecretQuery,
+  deletePropertyQuery
+} from './propertyQueries';
 
 export const addPropertyController = async (req, res) => {
   try {
@@ -77,6 +84,19 @@ export const editSecretController = async (req, res) => {
     }
   } catch (err) {
     error('editSecretController - error= ', err);
+    return res.status(400).send(err); 
+  }
+};
+
+export const deletePropertyController = async (req, res) => {
+  try {
+    const { rows } = await deletePropertyQuery(req.query);
+    success('deletePropertyController - successfully retrieved data', JSON.stringify(rows[0]));
+    return res
+      .status(201)
+      .send(rows[0]);
+  } catch (err) {
+    error('deletePropertyController - error= ', err);
     return res.status(400).send(err); 
   }
 };

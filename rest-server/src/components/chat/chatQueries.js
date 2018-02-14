@@ -7,6 +7,7 @@ export const addMessageQuery = async (body) => {
   const message = new Messages({
     message: body.message,
     username: body.username,
+    userId: body.userId,
     roomname: body.roomname,
     type: body.type
   })
