@@ -8,7 +8,6 @@ import {
 
 
 //adds propId and timeStamp of last msg in chat room to the DB table
-//nothing is sent to client
 export const addToLastMessageDBController = async (propId, timeStamp) => {
   try {
     await addToLastMessageDBQuery(propId, timeStamp);
@@ -19,7 +18,6 @@ export const addToLastMessageDBController = async (propId, timeStamp) => {
 };
 
 //adds a user's userId, propId and timeStamp of last msg the user received in chat room to the DB table
-//nothing is sent to client
 export const addToLastOnlineDBController = async (userId, propId, timeStamp) => {
   try {
     await addToLastOnlineDBQuery(userId, propId, timeStamp);
@@ -32,14 +30,12 @@ export const addToLastOnlineDBController = async (userId, propId, timeStamp) => 
 // sends an array of the user's prop's propIds for which notifications should be displayed:
 export const initialChatNotificationsController = async (userId, propsArray) => {
   try {
-    let notificationProps = [];
+    const notificationProps = [];
     for (let i = 0; i < propsArray.length; i++) {
-      let userPropTimeStamp = await initialChatNotificationsLastOnlineQuery(userId, propsArray[i]);
-      let lastMsgTimeStamp = await initialChatNotificationsLastMsgQuery(propsArray[i]);
-      console.log('meow', propsArray[i], lastMsgTimeStamp, userPropTimeStamp);
+      const userPropTimeStamp = await initialChatNotificationsLastOnlineQuery(userId, propsArray[i]);
+      const lastMsgTimeStamp = await initialChatNotificationsLastMsgQuery(propsArray[i]);
       if (lastMsgTimeStamp > userPropTimeStamp) {
-        console.log('woof', propsArray[i], lastMsgTimeStamp, userPropTimeStamp);
-        notificationProps.push(propsArray[i])
+        notificationProps.push(propsArray[i]);
       }
     }
     chatNotificationSocket.emit('initial.notifications', notificationProps);
