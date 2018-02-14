@@ -62,3 +62,13 @@ export const deleteByPropertyIdHelper = ({ propertyID }) => {
     WHERE property_id = ${propertyID}
   `;
 };
+
+export const getByPropertyIdHelper = ({ propertyID }) => {
+  return `
+  SELECT DISTINCT u.username, u.type, u.id
+    FROM users_properties_apt_units AS upa,
+         users AS u
+    WHERE upa.property_id = ${propertyID}
+    AND u.id = upa.user_id
+  `;
+}
