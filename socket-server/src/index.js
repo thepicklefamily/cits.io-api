@@ -2,13 +2,13 @@ const app = require('express')();
 const server = require('http').Server(app);
 export const io = require('socket.io')(server);
 export const chatNotificationSocket = io.of('/chat-notifications');
-const { each } = require('lodash');
-const Rooms = require('./rooms');
-const { Messages } = require('../config/mongo');
-const rooms = new Rooms(io);
-const clientEvents = require('./clientEvents');
-const PORT = process.env.PORT || 4155;
+import { each } from 'lodash';
+import Rooms from './rooms';
+import { Messages } from '../config/mongo';
+import clientEvents from './clientEvents';
 import { initialChatNotificationsController, addToLastOnlineDBController } from './chatNotifications/chatNotificationsControllers'; 
+const rooms = new Rooms(io);
+const PORT = process.env.PORT || 4155;
 
 
 //Chat Messaging Socket:
