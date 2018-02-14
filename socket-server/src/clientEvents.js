@@ -1,10 +1,11 @@
-const { serverInitialState, serverMessageReceive } = require('./serverEvents');
+import { serverInitialState, serverMessageReceive } from './serverEvents';
 import { addToLastMessageDBController, sendChatNotificationController } from './chatNotifications/chatNotificationsControllers';
 
 const clientReady = ({ io, socket, room }, payload) => {
   console.log('client ready');
   serverInitialState({ io, socket, room }, payload);
 };
+
 const clientMessage = ({ io, socket, room }, payload) => {
   console.log('hearing message');
   serverMessageReceive({ io, socket, room}, payload);
@@ -18,4 +19,4 @@ const clientEmitters = {
   'client.message': clientMessage
 };
 
-module.exports = clientEmitters;
+export default clientEmitters;
