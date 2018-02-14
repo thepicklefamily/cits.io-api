@@ -48,3 +48,24 @@ chatNotificationSocket.on('connection', function(socket){
 server.listen(PORT, () => {
   console.log(`socket server listening on port ${PORT}`);
 });
+
+// Active Users Socket:
+const activeUsersSocket = io.of('/active-users');
+activeUsersSocket.on('connection', (socket) => {
+  console.log('Server side - client successfully connected to active-users socket');
+  socket.on('login', (data) => {
+    socket.broadcast.emit('login', data);
+  });
+
+  socket.on('active', (data) => {
+    socket.broadcast.emit('active', data);
+  });
+
+  socket.on('inactive', (data) => {
+    socket.broadcast.emit('inactive', data);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('serverside- a client has disconnected');
+  })
+});
