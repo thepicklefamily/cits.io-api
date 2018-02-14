@@ -29,14 +29,15 @@ io.on('connection', (socket) => {
 chatNotificationSocket.on('connection', function(socket){
   console.log('a user connected to the chat-notifications socket');
 
-  socket.on('notifications.ready', (data) => {
+  socket.on('notifications.ready', ({userId, propsArray}) => {
+    console.log('notif.rdy', userId, propsArray);
     //tell newly connected client what notifications to render:
-    initialChatNotificationsController(data.userId, data.propsArray);
+    initialChatNotificationsController(userId, propsArray);
   });
 
   //receive confirmation of user viewing a message:
-  socket.on('message.received', (data) => {
-    addToLastOnlineDBController(data.userId, data.propId, data.timeStamp);
+  socket.on('message.received', ({userId, propId, timeStamp}) => {
+    addToLastOnlineDBController(userId, propId, timeStamp);
   });
 
   socket.on('disconnect', (data) => {
