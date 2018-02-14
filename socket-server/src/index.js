@@ -30,9 +30,8 @@ chatNotificationSocket.on('connection', function(socket){
   console.log('a user connected to the chat-notifications socket');
 
   socket.on('notifications.ready', ({userId, propsArray}) => {
-    console.log('notif.rdy', userId, propsArray);
     //tell newly connected client what notifications to render:
-    initialChatNotificationsController(userId, propsArray);
+    initialChatNotificationsController(userId, propsArray, socket.id);
   });
 
   //receive confirmation of user viewing a message:

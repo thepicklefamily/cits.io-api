@@ -28,7 +28,7 @@ export const addToLastOnlineDBController = async (userId, propId, timeStamp) => 
 };
 
 // sends an array of the user's prop's propIds for which notifications should be displayed:
-export const initialChatNotificationsController = async (userId, propsArray) => {
+export const initialChatNotificationsController = async (userId, propsArray, socketId) => {
   try {
     const notificationProps = [];
     for (let i = 0; i < propsArray.length; i++) {
@@ -38,7 +38,7 @@ export const initialChatNotificationsController = async (userId, propsArray) => 
         notificationProps.push(propsArray[i]);
       }
     }
-    chatNotificationSocket.emit('initial.notifications', notificationProps);
+    chatNotificationSocket.to(socketId).emit('initial.notifications', notificationProps);
     console.log('initialChatNotificationsController - success');
   }  catch (err) {
     console.log('initialChatNotificationsController - error= ', err);
