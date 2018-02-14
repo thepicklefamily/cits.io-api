@@ -13,5 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
 
 app.use('/tickets', router);
+app.use('/welcomes', router);
 
 app.listen(PORT, () => { console.log(`smtp listening on PORT ${PORT}`); })
