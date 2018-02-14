@@ -46,5 +46,6 @@ export const fetchPostsController = async (req, res) => {
     return res.status(200).send(sortTree(postTree(rows)));
   } catch (err) {
     error('fetchPostsController - error= ', err);
+    return res.status(400).send(err); 
   }
 }

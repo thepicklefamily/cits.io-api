@@ -20,7 +20,7 @@ export const verifyToken = async (req, res, next) => {
     req.url === '/api/auth/login' || req.url === '/api/auth/signup' || req.headers.authorization === 'raw' ? next() : 
     verify(req.headers.authorization, process.env.TOKEN_SECRET_KEY, (err, decoded) => {
        err ? 
-        (error('error: token not verified'), res.send(err)) 
+        (error('token not verified'), next()) 
         : 
         decoded ? 
           (success('token verified'), next()) 
@@ -28,7 +28,8 @@ export const verifyToken = async (req, res, next) => {
           console.log('something went very very wrong...');
       });
   } catch (err) {
-    error('token not verified');
+    error('error in jwt');
+    res.sendStatus(204);
     next(err);
   }
 };
