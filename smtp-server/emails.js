@@ -16,6 +16,7 @@ const ticketEmail = (data) => {
 <a href="http://localhost:3000/tickets">View Tickets</a>
 `};
 
+<<<<<<< HEAD
 const welcomeEmail = (data) => {
   return `
 <h2>Welcome to Castle in the Sky!</h2>
@@ -25,3 +26,7 @@ destination for all things property management related.</p>
 `};
 
 module.exports = { ticketEmail, welcomeEmail };
+=======
+
+module.exports = { ticketEmail };
+>>>>>>> f0d05602bdc32fc1dc31226079ebef0fff1e4f59
