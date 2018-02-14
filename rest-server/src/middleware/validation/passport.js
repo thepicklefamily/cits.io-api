@@ -24,7 +24,7 @@ passport.use(new LocalStrategy(localOptions, async (username, password, done) =>
     const passwordsMatch = await comparePasswords(password, rows[0].password);
     if (!passwordsMatch) {
       console.log('password hello');
-      return done(null, [], { message: 'Incorrect password.' });
+      return done(null);
     }
     console.log('wildcard hello');
     return done(null, rows);

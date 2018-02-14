@@ -20,7 +20,7 @@ export const verifyToken = async (req, res, next) => {
     req.url === '/api/auth/login' || req.url === '/api/auth/signup' || req.headers.authorization === 'raw' ? next() : 
     verify(req.headers.authorization, process.env.TOKEN_SECRET_KEY, (err, decoded) => {
        err ? 
-        (error('token not verified'), res.sendStatus(204)) 
+        (error('token not verified'), next()) 
         : 
         decoded ? 
           (success('token verified'), next()) 

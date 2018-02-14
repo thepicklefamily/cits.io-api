@@ -39,6 +39,7 @@ export const loginController = async (req, res) => {
       .set('Access-Control-Expose-Headers', 'authorization')
       .send(rows[0]);
   } catch (err) {
+    console.log('login says hello error');
     // error('loginController - error= ', err);
     return res.status(204).send();
   }
