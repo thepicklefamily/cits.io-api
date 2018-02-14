@@ -16,5 +16,12 @@ const ticketEmail = (data) => {
 <a href="http://localhost:3000/tickets">View Tickets</a>
 `};
 
+const welcomeEmail = (data) => {
+  return `
+<h2>Welcome to Castle in the Sky!</h2>
+<p>Welcome ${data.full_name}, Castle in the Sky is your 
+destination for all things property management related.</p>
+<a href="http://localhost:3000">Go to Castle in the Sky</a>
+`};
 
-module.exports = { ticketEmail };
+module.exports = { ticketEmail, welcomeEmail };
