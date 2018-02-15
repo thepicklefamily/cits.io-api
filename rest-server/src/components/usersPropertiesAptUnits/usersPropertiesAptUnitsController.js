@@ -4,7 +4,8 @@ import {
   getUsersPropertiesManagersQuery,
   editUsersPropertiesAptUnitsQuery,
   deleteUsersPropertiesAptUnitsQuery,
-  deleteByPropertyIdQuery
+  deleteByPropertyIdQuery,
+  getByPropertyIdQuery
 } from './usersPropertiesAptUnitsQueries';
 import { success, error } from '../../lib/log';
 
@@ -74,6 +75,17 @@ export const deleteByPropertyIdContoller = async (req, res) => {
     return res.status(200).send(rows);
   } catch (err) {
     error('deleteByPropertyIdContoller error ', err);
+    return res.status(400).send(err);
+  }
+}
+
+export const getByPropertyIdController = async (req, res) => {
+  try {
+    const { rows } = await getByPropertyIdQuery(req.query);
+    success('getByPropertyIdController success ', JSON.stringify(rows));
+    return res.status(200).send(rows);
+  } catch (err) {
+    error('getByPropertyIdController error ', err);
     return res.status(400).send(err);
   }
 }
