@@ -1,10 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const nodemailer = require('nodemailer');
 const router = require('./routes');
 const cors = require('cors');
-require('dotenv').config();
 const PORT = process.env.PORT || 8080;
 const app = express();
 
