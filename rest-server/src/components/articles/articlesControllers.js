@@ -45,7 +45,6 @@ export const deleteArticleController = async (req, res) => {
 
 export const fetchAllArticlesController = async (req, res) => {
   try {
-    console.log(ascend)
     const { rows } = await fetchAllArticlesQuery(req.params);
     success('fetchAllArticlesController - successfully fetched article', JSON.stringify(rows));
     return res.status(200).send(ascend(rows));
