@@ -48,7 +48,7 @@ export default {
   addPhonebook: {
     body: {
       company: Joi.string().required(),
-      service: Joi.string().required(),
+      service: Joi.string().required(), // char count max 28
       contactInfo: Joi.string().required(),
       propertyId: Joi.string().required()
     }
@@ -58,7 +58,7 @@ export default {
     body: {
       id: Joi.string().required(),
       company: Joi.string().required(),
-      service: Joi.string().required(),
+      service: Joi.string().required(), // char count max 28
       contactInfo: Joi.string().required()
     }
   },
