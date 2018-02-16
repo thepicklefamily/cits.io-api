@@ -5,6 +5,7 @@ import {
   deleteArticleQuery,
   fetchAllArticlesQuery
 } from "./articlesQueries";
+import { ascend } from './articleHelper/articleHelper';
 import { success, error } from '../../lib/log';
 
 export const addArticleController = async (req, res) => {
@@ -46,7 +47,7 @@ export const fetchAllArticlesController = async (req, res) => {
   try {
     const { rows } = await fetchAllArticlesQuery(req.params);
     success('fetchAllArticlesController - successfully fetched article', JSON.stringify(rows));
-    return res.status(200).send(rows);
+    return res.status(200).send(ascend(rows));
   } catch (err) {
     error('fetchAllArticlesController - error= ', err);
     return res.status(400).send(err); 

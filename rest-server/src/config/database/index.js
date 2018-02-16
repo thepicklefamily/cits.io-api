@@ -19,8 +19,8 @@ const config = {
 
 const db = new Pool(config);
 
-db.on('connect', () => {
-  success('successfully connected to pg', config.database);
+db.on('connect', (err) => {
+    success('successfully connected to pg', JSON.stringify(config));
 });
 
 db.on('remove', client => {
