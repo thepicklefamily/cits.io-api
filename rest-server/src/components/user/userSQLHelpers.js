@@ -10,7 +10,7 @@ export const editUserDataHelper = ({ user_id, full_name, email, username, phonen
   return `
     UPDATE users
       SET 
-        full_name = '${full_name}',
+        full_name = '${full_name.replace(/'/g, "''")}',
         email = '${email}',
         username = '${username}',
         phonenumber = ${phonenumber}
