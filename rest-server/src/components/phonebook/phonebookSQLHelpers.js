@@ -1,7 +1,7 @@
 export const addPropertyPhonebookHelper = ({ company, service, contactInfo, propertyId }) => {
   return `
     INSERT INTO phonebooks (company, service, contactInfo, propertyId)
-    VALUES ('${company}', '${service}', '${contactInfo}', ${propertyId})
+    VALUES ('${company.replace(/'/g, "''")}', '${service.replace(/'/g, "''")}', '${contactInfo}', ${propertyId})
     RETURNING id, company, service, contactInfo, propertyId
   `;
 };
@@ -17,7 +17,7 @@ export const fetchPropertyPhonebookHelper = ({propertyId}) => {
 export const updatePropertyPhonebookHelper = ({ id, company, service, contactInfo }) => {
   return `
   UPDATE phonebooks
-  SET company = '${company}', service = '${service}', contactInfo = '${contactInfo}'
+  SET company = '${company.replace(/'/g, "''")}', service = '${service.replace(/'/g, "''")}', contactInfo = '${contactInfo}'
   WHERE id=${id}
   RETURNING company, service, contactInfo
   `;

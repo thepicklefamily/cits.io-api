@@ -1,7 +1,7 @@
 export const addPropertyHelper = ({ secret_key, name, address }) => {
   return `
     INSERT into properties (secret_key, name, address)
-    VALUES ('${secret_key}','${name}','${address}')
+    VALUES ('${secret_key}','${name.replace(/'/g, "''")}','${address.replace(/'/g, "''")}')
     RETURNING id, secret_key, name, address
   `;
 };
@@ -25,8 +25,8 @@ export const getPropertyByIDHelper = ({ id }) => {
 export const editPropertyHelper = ({ id, name, address }) => {
   return `
     UPDATE properties
-      SET name = '${name}',
-          address = '${address}'
+      SET name = '${name.replace(/'/g, "''")}',
+          address = '${address.replace(/'/g, "''")}'
     WHERE id='${id}'
   `;
 };

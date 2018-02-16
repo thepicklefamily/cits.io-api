@@ -4,9 +4,9 @@ import { success, error } from '../../lib/log';
 
 export const addPropertyPhonebookController = async (req, res) => {
   try {
-    console.log('here is the req.body ', req.body);
-    req.body.company = req.body.company.replace(/'/g, "''");
-    console.log('here is the req.body after ', req.body);
+    // console.log('here is the req.body ', req.body);
+    // req.body.company = req.body.company.replace(/'/g, "''");
+    // console.log('here is the req.body after ', req.body);
     const { rows } = await addPropertyPhonebookQuery(req.body);
     success('addPropertyPhonebookController - successfully added property phonebook ', rows);
     return res.status(200).send(rows[0]);
