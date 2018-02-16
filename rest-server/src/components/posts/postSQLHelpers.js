@@ -38,35 +38,4 @@ export const fetchPostsHelper = ({ article_id }) => {
     SELECT *
     FROM posts_with_depths
     `
-  };
-  
-  
-
-
-/*
-maxdepth AS (
-  SELECT max(depth) maxdepth FROM posts_with_depths
-),
-post_tree AS (
-  SELECT posts_with_depths.*, jsonb '[]' children
-  FROM posts_with_depths, maxdepth
-  WHERE depth = maxdepth
-
-  UNION
-  (
-    SELECT (parent).*, jsonb_agg(child) FROM (
-      SELECT parent, child
-      FROM posts_with_depths parent
-      JOIN post_tree child ON child.parentId = parent.id
-    ) branch
-    GROUP BY branch.parent
-
-    UNION
-
-    SELECT d.*, jsonb '[]' children
-    FROM posts_with_depths d
-    WHERE NOT EXISTS ( SELECT 1 FROM posts_with_depths possiblechild
-                        WHERE possiblechild.parentId = d.id)
-  )
-)
-*/
+};

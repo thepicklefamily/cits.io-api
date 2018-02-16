@@ -6,18 +6,6 @@ export const addUsersPropertiesAptUnitsHelper = ({ userID, propertyID, aptUnitID
   `;
 }
 
-// export const getUsersPropertiesAptUnitsHelper = ({ userID }) => {
-//   return `
-//     SELECT p.id, p.name, p.address, p.secret_key, au.unit
-//       FROM users_properties_apt_units AS upa
-//       INNER JOIN properties AS p
-//         ON (p.id = upa.property_id)
-//       INNER JOIN apt_units AS au
-//         ON (au.id = upa.apt_unit_id)
-//       WHERE upa.user_id = ${userID}
-//   `;
-// };
-
 export const getUsersPropertiesAptUnitsHelper = ({ userID }) => {
   return `
     SELECT p.id, p.name, p.address, p.secret_key, au.unit

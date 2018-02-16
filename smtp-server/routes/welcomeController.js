@@ -7,7 +7,6 @@ const { sendMail } = require('../sendMail');
 
 const WelcomeEmailController = {
   sendWelcomeEmail: async (req, res) => { 
-    console.log('reqbody in sent ticket', req.body);
     const output = await welcomeEmail(req.body);  
     // setup email data with unicode symbols
     let mailOptions = {

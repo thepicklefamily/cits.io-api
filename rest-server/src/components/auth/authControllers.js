@@ -24,7 +24,6 @@ export const signUpController = async (req, res) => {
 };
 
 export const loginController = async (req, res) => {
-  console.log('login says hello');
   try {
     const { rows } = await loginQuery(req.body);
     if (rows.length === 0) return res.status(500).send();
@@ -39,8 +38,7 @@ export const loginController = async (req, res) => {
       .set('Access-Control-Expose-Headers', 'authorization')
       .send(rows[0]);
   } catch (err) {
-    console.log('login says hello error');
-    // error('loginController - error= ', err);
+    error('loginController - error= ', err);
     return res.status(204).send();
   }
 };

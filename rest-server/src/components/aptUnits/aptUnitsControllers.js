@@ -17,7 +17,6 @@ export const addAptUnitController = async (req, res) => {
 };
 
 export const getAptUnitByIDController = async (req, res) => {
-  console.log('HELLO FROM ID ', req.query);
   try {
     const { rows } = await getAptUnitByIDQuery(req.query);
     success('getAptUnitByIDController - successfully retrieved data', JSON.stringify(rows[0]));

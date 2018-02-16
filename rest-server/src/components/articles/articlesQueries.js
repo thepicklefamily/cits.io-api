@@ -16,10 +16,7 @@ export const addArticleQuery = async body => {
 export const editArticleQuery = async body => {
   try {
     const queryString = await editArticleHelper(body);
-    console.log(queryString)
     const data = await db.queryAsync(queryString);
-
-    console.log('asdfasdf', data)
     success('editArticleQuery - successfully updated Data', JSON.stringify(data));
     return data;
   } catch (err) {

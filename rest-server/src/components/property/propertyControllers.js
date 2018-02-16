@@ -38,7 +38,6 @@ export const getPropertyByNameController = async (req, res) => {
 };
 
 export const getPropertyByIDController = async (req, res) => {
-  console.log('HELLO FROM ID ', req.query);
   try {
     const { rows } = await getPropertyByIDQuery(req.query);
     success('getPropertyByIDController - successfully retrieved data', JSON.stringify(rows));
@@ -66,10 +65,7 @@ export const editPropertyController = async (req, res) => {
 
 export const editSecretController = async (req, res) => {
   try {
-    // checks to see if input password matches current password
-    console.log('asidfjafgiasdkgajsfdlkfasd', req.body)
     const passwordMatch = await comparePasswords(req.body.password, req.body.actualPassword);
-
     if (passwordMatch) {
       const { rows } = await editSecretQuery(req.body);
       success('editSecretController - successfully retrieved data', JSON.stringify(rows[0]));
@@ -79,7 +75,6 @@ export const editSecretController = async (req, res) => {
     }
       else 
     {
-      console.log('FAILURE OF PASSWORD');
       res.status(400).send('Password Did Not Match');
     }
   } catch (err) {

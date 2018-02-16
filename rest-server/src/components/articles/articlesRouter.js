@@ -27,8 +27,5 @@ router
   .route('/fetchAllArticles/:property_id')  
   .get(fetchAllArticlesController);
 
-// NOTE TO SELF
-  // must check if user is a manager before ALLOWING CREATING, EDITING, DELETING ARTICLES 
-
 
 export default router;

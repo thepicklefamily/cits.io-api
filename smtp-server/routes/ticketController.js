@@ -7,7 +7,6 @@ const { sendMail } = require('../sendMail');
 
 const TicketEmailController = {
   sendTicketEmail: async (req, res) => { 
-    await console.log('reqbody in sent ticket', req.body);
     let managerEmails = [];
     for (let i = 0; i < req.body.managerEmails.length; i++) {
       managerEmails.push(req.body.managerEmails[i].email);

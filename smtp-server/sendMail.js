@@ -24,7 +24,6 @@ const sendMail = async (req, res, mailOptions) => {
     });
     res.status(200).send('successfully sent ticket');
   } catch (err) {
-    console.log('error sending email');
     res.status(400).send(err);
   }
 }

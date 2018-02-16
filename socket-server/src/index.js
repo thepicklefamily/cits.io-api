@@ -13,7 +13,6 @@ const PORT = process.env.PORT || 4155;
 
 //Chat Messaging Socket:
 io.on('connection', (socket) => {
-  console.log('user connected');
   const { roomId } = socket.handshake.query;
   const room = rooms.findOrCreate(roomId || 'default');
   socket.on('disconnect', () => {

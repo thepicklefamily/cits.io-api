@@ -5,7 +5,6 @@ import { success, error } from '../../lib/log';
 export const addPostQuery = async body => {
   try {
     const queryString = await addPostHelper(body);
-    console.log(queryString);
     const data = await db.queryAsync(queryString);
     success('addPostQuery - successfuly inserted Data', JSON.stringify(data));
     return data;
