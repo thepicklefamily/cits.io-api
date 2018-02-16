@@ -10,7 +10,7 @@ export const getPropertyByNameHelper = ({ name }) => {
   return `
     SELECT *
     FROM properties
-    WHERE name='${name}'
+    WHERE name='${name.replace(/'/g, "''")}'
   `;
 };
 
