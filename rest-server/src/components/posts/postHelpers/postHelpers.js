@@ -1,5 +1,3 @@
-import { isNullOrUndefined } from "util";
-
 export const sortTree = (tree) => {
   const newTree = { children: tree };
   
