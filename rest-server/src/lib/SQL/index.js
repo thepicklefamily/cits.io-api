@@ -190,7 +190,7 @@ export const createTicketTable = async () => {
         apt_num VARCHAR(255) NOT NULL,
         date VARCHAR(255) NOT NULL,
         subject VARCHAR(255) NOT NULL,
-        description VARCHAR(255) NOT NULL,
+        description TEXT NOT NULL,
         photo_url VARCHAR(255) NOT NULL,
         status VARCHAR(255) NOT NULL,
         userId INT NOT NULL,
